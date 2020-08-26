@@ -14,7 +14,9 @@ main()
  There is only one door through which you can enter or leave the house. The Master room has some\
  more security features which only master can access. The temperature of the house is fully \
  maintained by automatic temperature controller. Only Master has a special security key (Master\
- key) with which he can open any door of the house.)";
+ key) with which he can open any door of the house. There is also a safe room in Master room\
+ which is accessed with master key only.)";
+
 
 
     getch();

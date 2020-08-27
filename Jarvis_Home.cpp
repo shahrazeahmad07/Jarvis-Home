@@ -19,6 +19,7 @@ using namespace std;
     string mainDoorKey = "12345";
     bool switchcorridorlight = 0;
     bool switchmusic = 0;
+    string musicAnswer;
 
 
 //////////// Beeps ///////////////////
@@ -49,7 +50,7 @@ void mainDoorBurglarProtocol()
     cout << "Whole house is getting sealed." << endl;
     Beep(500, 10000);
     cout << "(the whole house got sealed with unbreakable shutters)" << endl;
-    cout << "(Jarvis has also made calls to Master and Police also.)" << endl;
+    cout << "(Jarvis has called Master and Police)" << endl;
     cout << "(Police is comming)" << endl;
     cout << "(Burglar's Protocol can be deactivated with Master key only)" << endl;
     burglarMasterKeyInputAgain:
@@ -64,16 +65,15 @@ void mainDoorBurglarProtocol()
     {
         correctBeep();
         cout << "Key Accepted. Burglar's Protocol is disabled." << endl;
-        cout << "(The house is unsealed and the main door opens. Lights of corridor and kitchen are\
+        cout << "(The house is unsealed and the main door opens. Lights of corridor and kitchen are\n\
  turned on. Some basic lights of the house are also turned on.)" << endl;
         switchcorridorlight = 1;
         cout << "Master someone tried to enter your house and I have initiated Burglar's Protocol" << endl;
         cout << "Your house is in safe Hands. You don't need to worry." << endl;
-        cout << "I have also called Police at that time. You can now ask the police about the\
+        cout << "I have also called Police at that time. You can now ask the police about the\n\
  situation." << endl;
         cout << "Get Relax. Everything is safe." << endl;
         cout << "Do you want me to turn on the music?" << endl;
-    string musicAnswer;
     musicAnswerAgain:
     getline(cin, musicAnswer);
     if (musicAnswer == "Yes" || musicAnswer == "yes" || musicAnswer == "Y" || musicAnswer == "y")
@@ -109,18 +109,18 @@ main()
     cout << setw(53) << "A Smart Home Agent" << endl;
 
     ///////////// House Description //////////////
-    cout << "(This house has 1 guest room, 1 master room, a kitchen, a drawing room and a corridor.\
- There is only one door through which you can enter or leave the house. The Master room has some\
- more security features which only master can access. Only Master has a special security key (Master\
- key) with which he can open any door of the house. There is also a safe room in Master room\
- which is accessed by master key only. The temperature of the house is fully maintained by\
- automatic temperature controller. The house has some more features related to different\
- appliances of the house. The Jarvis(AI Assistant) take care of different things of house\
- automatically.)";
+    cout << "(This house has 1 guest room, 1 master room, a kitchen, a drawing room and a corridor.\n\
+ There is only one door through which you can enter or leave the house. The Master room has some\n\
+ more security features which only master can access. Only Master has a special security key (Master\n\
+ key) with which he can open any door of the house. There is also a safe room in Master room\n\
+ which is accessed by master key only. The temperature of the house is fully maintained by\n\
+ automatic temperature controller. The house has some more features related to different\n\
+ appliances of the house. The Jarvis(AI Assistant) take care of different things of house\n\
+ automatically.)" << endl;
 
 
     ////////////// Main Door ////////////////////
-    cout << setw(50) << "(Main Door) ";
+    cout << setw(40) << "(Main Door) ";
     cout << "Enter key to open: ";
     string mainDoorKeyInput;
     int mainDoorKeyTries = 0;
@@ -153,10 +153,9 @@ main()
     }
 
     ///////////// Corridor /////////////
-    cout << "(Lights of corridor and Kitchen are turned on. Some basic lights of the house\
- are also turned on)";
+    cout << "(Lights of corridor and Kitchen are turned on. Some basic lights of the house\n\
+ are also turned on)" << endl;
     cout << "Do you want me to turn on the music?" << endl;
-    string musicAnswer;
     musicAnswerAgain:
     getline(cin, musicAnswer);
     if (musicAnswer == "Yes" || musicAnswer == "yes" || musicAnswer == "Y" || musicAnswer == "y")

@@ -24,7 +24,7 @@ inline void correctBeep()
 main()
 {
     ///////////// Burglar's variable ///////////
-    string burglarMasterKey;
+    string burglarMasterKeyInput;
 
     ///////////// Opening statement //////////////
     cout << setw(50) << "Jarvis Home" << endl;
@@ -85,14 +85,24 @@ main()
     cout << "(Jarvis made a call to Master and Police also.)" << endl;
     cout << "(Police is comming)" << endl;
     cout << "(Burglar's Protocol can be deactivated with Master key only)";
-    getline (cin, burglarMasterKey);
-    if (burglarMasterKey == MasterKey)
+    burglarMasterKeyInputAgain:
+    getline (cin, burglarMasterKeyInput);
+    if (burglarMasterKeyInput != MasterKey)
+    {
+        cout << "Wrong key." << endl;
+        goto burglarMasterKeyInputAgain;
+    }
+    
+    else
     {
         cout << "Key Accepted. Burglar's Protocol is disabled." << endl;
         cout << "(The house is unsealed and the main door opens.)" << endl;
         cout << "Master someone tried to enter your house and I have initiated Burglar's Protocol" << endl;
-        cout << "Your house is safe Hands. You don't need to worry.";
-        
+        cout << "Your house is safe Hands. You don't need to worry." << endl;
+        cout << "I have also called Police at that time. You can now ask the police about the\
+     situation." << endl;
+        cout << "Everything is safe." << endl;
+
     }
 
     return 0;

@@ -7,6 +7,12 @@
 
 using namespace std;
 
+///////////// Global Variables ///////////
+    string burglarMasterKeyInput;
+    string MasterKey = "74588";
+    string mainDoorKey = "12345";
+
+
 inline void wrongBeep()
 {
     for (int i = 0; i < 3; i++)
@@ -20,12 +26,41 @@ inline void correctBeep()
     Beep(150, 800);
 }
 
+void BurglarProtocol()
+{
+    ////////////// Burglar's Protocol //////////////
+    cout << "You have entered three times wrong Key.." << endl;
+    cout << "I have enabled Burglar's Protocol." << endl;
+    cout << "Whole house is sealed." << endl;
+    Beep(500, 10000);
+    cout << "(Jarvis made a call to Master and Police also.)" << endl;
+    cout << "(Police is comming)" << endl;
+    cout << "(Burglar's Protocol can be deactivated with Master key only)" << endl;
+    burglarMasterKeyInputAgain:
+    getline (cin, burglarMasterKeyInput);
+    if (burglarMasterKeyInput != MasterKey)
+    {
+        cout << "Wrong key." << endl;
+        goto burglarMasterKeyInputAgain;
+    }
+    
+    else
+    {
+        cout << "Key Accepted. Burglar's Protocol is disabled." << endl;
+        cout << "(The house is unsealed and the main door opens. Lights of corridor and kitchen\
+     is turned on.)" << endl;
+        cout << "Master someone tried to enter your house and I have initiated Burglar's Protocol" << endl;
+        cout << "Your house is safe Hands. You don't need to worry." << endl;
+        cout << "I have also called Police at that time. You can now ask the police about the\
+     situation." << endl;
+        cout << "Everything is safe." << endl;
+
+    }
+}
+
 
 main()
 {
-    ///////////// Burglar's variable ///////////
-    string burglarMasterKeyInput;
-
     ///////////// Opening statement //////////////
     cout << setw(50) << "Jarvis Home" << endl;
     cout << setw(53) << "A Smart Home Agent" << endl;
@@ -44,12 +79,10 @@ main()
     ////////////// Main Door ////////////////////
     cout << setw(50) << "Main Door";
     cout << "Enter key to open: ";
-    string MasterKey = "74588";
-    string mainDoorKey = "12345";
     string mainDoorKeyInput;
+    int mainDoorKeyTries = 0;
     mainDoorKeyInputAgain:
     getline(cin, mainDoorKeyInput);
-    int mainDoorKeyTries = 0;
     if (mainDoorKeyInput == MasterKey)
     {
         cout << "Access Granted." << endl;
@@ -67,43 +100,21 @@ main()
         cout << "Wrong key. Access Denied." << endl;
         cout << "Enter again: ";
         wrongBeep();
-        ++mainDoorKeyTries;
+        mainDoorKeyTries += 1;
         if (mainDoorKeyTries == 3)
         {
-            goto BurglarsProtocol;
+            BurglarProtocol();
+            goto Corridor;
         }
         goto mainDoorKeyInputAgain;
     }
-    
-    
-    ////////////// Burglar's Protocol //////////////
-    BurglarsProtocol:
-    cout << "You have entered three times wrong Key.." << endl;
-    cout << "I have enabled Burglar's Protocol." << endl;
-    cout << "Whole house is sealed." << endl;
-    Beep(500, 50000000);
-    cout << "(Jarvis made a call to Master and Police also.)" << endl;
-    cout << "(Police is comming)" << endl;
-    cout << "(Burglar's Protocol can be deactivated with Master key only)";
-    burglarMasterKeyInputAgain:
-    getline (cin, burglarMasterKeyInput);
-    if (burglarMasterKeyInput != MasterKey)
-    {
-        cout << "Wrong key." << endl;
-        goto burglarMasterKeyInputAgain;
-    }
-    
-    else
-    {
-        cout << "Key Accepted. Burglar's Protocol is disabled." << endl;
-        cout << "(The house is unsealed and the main door opens.)" << endl;
-        cout << "Master someone tried to enter your house and I have initiated Burglar's Protocol" << endl;
-        cout << "Your house is safe Hands. You don't need to worry." << endl;
-        cout << "I have also called Police at that time. You can now ask the police about the\
-     situation." << endl;
-        cout << "Everything is safe." << endl;
 
-    }
+    ///////////// Corridor /////////////
+    Corridor:
+    cout << "corridor";
+    
+    
+    
 
     return 0;
 }

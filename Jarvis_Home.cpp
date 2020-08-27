@@ -82,7 +82,7 @@ void mainDoorBurglarProtocol()
         switchmusic = 1;
         cout << "(music is playing)" << endl;
     }
-    else if (musicAnswer == "No" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n" ||)
+    else if (musicAnswer == "No" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n")
     {
         cout << "Okay Sir..!" << endl;
     }
@@ -165,7 +165,7 @@ main()
         switchmusic = 1;
         cout << "(music is playing)" << endl;
     }
-    else if (musicAnswer == "No" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n" ||)
+    else if (musicAnswer == "No" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n")
     {
         cout << "Okay Sir..!" << endl;
     }

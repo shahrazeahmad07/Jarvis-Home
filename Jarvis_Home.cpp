@@ -7,11 +7,19 @@
 
 using namespace std;
 
+
+/// ========================================================================== ///
+
+//////////////////////////////// Before Main ///////////////////////////////////
+
+
 ///////////// Global Variables ///////////
     string burglarMasterKeyInput;
     string MasterKey = "74588";
     string mainDoorKey = "12345";
 
+
+//////////// Beeps ///////////////////
 
 inline void wrongBeep()
 {
@@ -24,8 +32,13 @@ inline void wrongBeep()
 inline void correctBeep()
 {
     Beep(150, 800);
+    Beep(500, 150);
 }
 
+
+
+
+///////////////// Main Door Burglar's Protocol /////////////////////////////
 void mainDoorBurglarProtocol()
 {
     ////////////// Burglar's Protocol //////////////
@@ -33,8 +46,8 @@ void mainDoorBurglarProtocol()
     cout << "I have enabled Burglar's Protocol." << endl;
     cout << "Whole house is getting sealed." << endl;
     Beep(500, 10000);
-    cout << "(the whole house begans to seal (unbreakable shutters gets down))" << endl;
-    cout << "(Jarvis made a call to Master and Police also.)" << endl;
+    cout << "(the whole house got sealed with unbreakable shutters)" << endl;
+    cout << "(Jarvis has also made calls to Master and Police also.)" << endl;
     cout << "(Police is comming)" << endl;
     cout << "(Burglar's Protocol can be deactivated with Master key only)" << endl;
     burglarMasterKeyInputAgain:
@@ -48,18 +61,21 @@ void mainDoorBurglarProtocol()
     else
     {
         correctBeep();
-        Beep(500, 150);
         cout << "Key Accepted. Burglar's Protocol is disabled." << endl;
         cout << "(The house is unsealed and the main door opens. Lights of corridor and kitchen\
  is turned on.)" << endl;
         cout << "Master someone tried to enter your house and I have initiated Burglar's Protocol" << endl;
-        cout << "Your house is safe Hands. You don't need to worry." << endl;
+        cout << "Your house is in safe Hands. You don't need to worry." << endl;
         cout << "I have also called Police at that time. You can now ask the police about the\
  situation." << endl;
         cout << "Get Relax. Everything is safe." << endl;
 
     }
 }
+
+
+
+/// =============================================================================== ///
 
 
 main()
@@ -91,14 +107,12 @@ main()
         cout << "Access Granted." << endl;
         cout << "Welcome Master..!" << endl;
         correctBeep();
-        Beep(500, 80);
     }
     else if (mainDoorKeyInput == mainDoorKey)
     {
         cout << "Access Granted." << endl;
         cout << "Welcome Sir..!" << endl;
         correctBeep();
-        Beep(500, 80);
     }
     else
     {

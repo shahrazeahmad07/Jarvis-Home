@@ -26,7 +26,7 @@ inline void correctBeep()
     Beep(150, 800);
 }
 
-void BurglarProtocol()
+void mainDoorBurglarProtocol()
 {
     ////////////// Burglar's Protocol //////////////
     cout << "You have entered three times wrong Key.." << endl;
@@ -107,7 +107,7 @@ main()
         mainDoorKeyTries += 1;
         if (mainDoorKeyTries == 3)
         {
-            BurglarProtocol();
+            mainDoorBurglarProtocol();
             goto Corridor;
         }
         cout << "Enter again: ";

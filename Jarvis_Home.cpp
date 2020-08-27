@@ -19,7 +19,7 @@ main()
  appliances of the house. The Jarvis(AI Assistant) take care of different things of house\
  automatically.)";
 
-
+    ////////////// Main Door ////////////////////
 
     getch();
     return 0;

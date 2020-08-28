@@ -250,6 +250,8 @@ main()
     //////////////////// Corridor Switch ////////////////////////////
     switch (corridorOptionSelect)
     {
+
+    //////////////////// Leave House /////////////////////////////
     case 8:
         optionSelectYesBeep();
         if (Master == 1 && Guest == 1)

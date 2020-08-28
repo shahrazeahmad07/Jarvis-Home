@@ -108,7 +108,7 @@ void guestCheck()
     if (someoneAnswer == "Yes" || someoneAnswer == "YES" || someoneAnswer == "yes" || someoneAnswer == "y" || someoneAnswer == "Y")
     {
         Guest = 1;
-        cout << "Welcome Sir.. This is me Jarvis." << endl;
+        cout << "O Nice. Welcome our Guest.. This is me Jarvis." << endl;
     }
     else if (someoneAnswer == "No" || someoneAnswer == "NO" || someoneAnswer == "no" || someoneAnswer == "n" || someoneAnswer == "N")
     {
@@ -187,26 +187,30 @@ main()
     Corridor:
     if (Master == 1)
     {
-        cout << "Do you want me to turn on the music?" << endl;
-        musicAnswerAgain:
-        getline(cin, musicAnswer);
-        if (musicAnswer == "Yes" || musicAnswer == "YES" || musicAnswer == "yes" || musicAnswer == "Y" || musicAnswer == "y")
+        guestCheck();
+        if (Guest == 0)
         {
-            optionSelectYesBeep();
-            cout << "Playing Music.." << endl;
-            switchmusic = 1;
-            cout << "(music is playing)" << endl;
-        }
-        else if (musicAnswer == "No" || musicAnswer == "NO" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n")
-        {
-            noBeep();
-            cout << "Okay Master..!" << endl;
-        }
-        else
-        {
-            wrongBeep();
-            cout << "I Dont Understand you Master.\nPlease tell me again: ";
-            goto musicAnswerAgain;
+            cout << "Do you want me to turn on the music?" << endl;
+            musicAnswerAgain:
+            getline(cin, musicAnswer);
+            if (musicAnswer == "Yes" || musicAnswer == "YES" || musicAnswer == "yes" || musicAnswer == "Y" || musicAnswer == "y")
+            {
+                optionSelectYesBeep();
+                cout << "Playing Music.." << endl;
+                switchmusic = 1;
+                cout << "(music is playing)" << endl;
+            }
+            else if (musicAnswer == "No" || musicAnswer == "NO" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n")
+            {
+                noBeep();
+                cout << "Okay Master..!" << endl;
+            }
+            else
+            {
+                wrongBeep();
+                cout << "I Dont Understand you Master.\nPlease tell me again: ";
+                goto musicAnswerAgain;
+            }
         }
     }
     

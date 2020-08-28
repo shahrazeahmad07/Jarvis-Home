@@ -26,6 +26,7 @@ using namespace std;
     
     bool switchmusic = 0;
     bool Master = 0;
+    bool Guest = 0;
     bool switchCurtain = 0;
     bool switchTv = 0;
     
@@ -92,12 +93,33 @@ void mainDoorBurglarProtocol()
         cout << "Your house is in safe Hands. You don't need to worry." << endl;
         cout << "I have also called Police at that time. You can now ask the police about the\n\
  situation." << endl;
-        cout << "Get Relax. Everything is safe." << endl;
-        cout << "Now ";
-        
+        cout << "Get Relax. Everything is safe." << endl;        
     }
 }
 
+
+//////////////////////////////// Guest Check /////////////////////////////////////
+void guestCheck()
+{
+    cout << "Is Someone else with you?" << endl;
+    string someoneAnswer;
+    someoneAnswerAgain:
+    getline (cin, someoneAnswer);
+    if (someoneAnswer == "Yes" || someoneAnswer == "YES" || someoneAnswer == "yes" || someoneAnswer == "y" || someoneAnswer == "Y")
+    {
+        Guest = 1;
+        cout << "Welcome Sir.. This is me Jarvis." << endl;
+    }
+    else if (someoneAnswer == "No" || someoneAnswer == "NO" || someoneAnswer == "no" || someoneAnswer == "n" || someoneAnswer == "N")
+    {
+        cout << "Okay Sir.." << endl;
+    }
+    else
+    {
+        cout << "I Dont understand you Master. Plz Answer Again: ";
+        goto someoneAnswerAgain;
+    }
+}
 
 
 /// =============================================================================== ///
@@ -130,22 +152,23 @@ main()
     getline(cin, mainDoorKeyInput);
     if (mainDoorKeyInput == MasterKey)
     {
-        cout << "Access Granted." << endl;
         correctBeep();
-        cout << "Welcome Master..!" << endl;
         Master = 1;
+        cout << "Access Granted." << endl;
+        cout << "Welcome Master..!" << endl;
 
     }
     else if (mainDoorKeyInput == mainDoorKey)
     {
-        cout << "Access Granted." << endl;
         correctBeep();
+        Guest = 1;
+        cout << "Access Granted." << endl;
         cout << "Welcome Sir..!" << endl;
     }
     else
     {
-        cout << "Wrong key. Access Denied." << endl;
         wrongBeep();
+        cout << "Wrong key. Access Denied." << endl;
         mainDoorKeyTries += 1;
         if (mainDoorKeyTries == 3)
         {

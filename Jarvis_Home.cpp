@@ -17,14 +17,20 @@ using namespace std;
     string burglarMasterKeyInput;
     string MasterKey = "74588";
     string mainDoorKey = "12345";
-    bool switchcorridorlight = 0;
-    bool switchmusic = 0;
     string musicAnswer;
-    int Master = 0;
+
+    bool switchcorridorlight = 0;
+    bool switchMasterRoomLight = 0;
+    bool switchGuestRoomLight = 0;
+    bool switchLivingRoomLight = 0;
+    bool switchCurtain = 0;
+    
+    bool switchmusic = 0;
+    bool Master = 0;
     
 
 
-//////////// Beeps ///////////////////
+////////////////// Beeps ///////////////////
 
 inline void wrongBeep()
 {
@@ -114,7 +120,7 @@ main()
  automatically.)" << endl;
 
 
-    ////////////// Main Door ////////////////////
+    ///////////////////////////// Main Door //////////////////////////////
     cout << setw(40) << "(Main Door) ";
     cout << "Enter key to open: ";
     string mainDoorKeyInput;
@@ -149,9 +155,10 @@ main()
         goto mainDoorKeyInputAgain;
     }
 
-    ///////////// Corridor /////////////
+    //////////////////////////// Corridor //////////////////////////////
+    switchcorridorlight = 1;
     cout << "(Main Door opens. Lights of corridor and Kitchen are turned on. Some basic lights\n\
- of the houseare also turned on)" << endl;
+ of the house are also turned on)" << endl;
 
     Corridor:
     if (Master == 1)
@@ -159,14 +166,14 @@ main()
         cout << "Do you want me to turn on the music?" << endl;
         musicAnswerAgain:
         getline(cin, musicAnswer);
-        if (musicAnswer == "Yes" || musicAnswer == "yes" || musicAnswer == "Y" || musicAnswer == "y")
+        if (musicAnswer == "Yes" || musicAnswer == "YES" || musicAnswer == "yes" || musicAnswer == "Y" || musicAnswer == "y")
         {
             optionSelectYesBeep();
             cout << "Playing Music.." << endl;
             switchmusic = 1;
             cout << "(music is playing)" << endl;
         }
-        else if (musicAnswer == "No" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n")
+        else if (musicAnswer == "No" || musicAnswer == "NO" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n")
         {
             noBeep();
             cout << "Okay Master..!" << endl;
@@ -179,7 +186,9 @@ main()
         }
     }
     
-    
+
+
+    //////////////////////// Corridor Options /////////////////////////
 
 
     cout << endl;
@@ -202,11 +211,140 @@ main()
     switch (corridorOption)
     {
     case 1:
-        //////////////////// Master Room /////////////////////
-        cout << "(Door of Master Room opens. Lights of Master Room turned on. Music is still\n\
- playing in the background)";
+        ///////////////////////////// Master Room ///////////////////////////
+        optionSelectYesBeep();
+        cout << "(Door of Master Room opens. Lights of Master Room turned on.)" << endl;
+        switchMasterRoomLight = 1;
+        if (switchmusic == 1)
+        {
+            cout << "(Music is Playing in the background)" << endl;
+        }
 
-        break;
+        ////////////////////////// Master Room Options //////////////////////////
+        MasterRoom:
+        cout << endl;
+        cout << "    1) Curtains" << endl;
+        cout << "    2) TV" << endl;
+        cout << "    3) Light" << endl;
+        cout << "    4) Music" << endl;
+        cout << "    5) Safe Room" << endl;
+        cout << "    6) Berglar's Protocol" << endl;
+        cout << "    7) Go to Corridor (temperory)" << endl;
+        cout << "    8) Leave Master Room" << endl;
+        cout << endl;
+
+
+        ////////////////////// Master Room Option Select /////////////////////////
+        int masterRoomOptionSelect;
+        while (!(cin >> masterRoomOptionSelect))
+        {
+            cout << "Invalid Option. Select Again: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        switch (masterRoomOptionSelect)
+        {
+        /////////////////////////////// Curtains //////////////////////////////
+        case 1:
+            optionSelectYesBeep();
+            ///////////////////////// Curtains Already Closed ////////////////////////
+            if (switchCurtain == 0)
+            {
+                cout << "Do you want me to open the Curtains?" << endl;
+                string curtainAnswer;
+                closedCurtainAnswerAgain:
+                getline (cin, curtainAnswer);
+                if (curtainAnswer == "Yes" || curtainAnswer == "YES" || curtainAnswer == "yes" || curtainAnswer == "Y" || curtainAnswer == "y")
+                {
+                    optionSelectYesBeep();
+                    switchCurtain = 1;
+                    cout << "Curtains are opened now" << endl;
+                    goto MasterRoom;
+                }
+                else if (curtainAnswer == "No" || curtainAnswer == "NO" || curtainAnswer == "no" || curtainAnswer == "N" || curtainAnswer == "n")
+                {
+                    if (Master == 1)
+                    {
+                        noBeep();
+                        cout << "Okay Master.." << endl;
+                        goto MasterRoom;
+                    }
+                    else
+                    {
+                        noBeep();
+                        cout << "Okay.." << endl;
+                        goto MasterRoom;
+                    }
+                    
+                }
+                else
+                {
+                    if (Master == 1)
+                    {
+                        wrongBeep();
+                        cout << "I dont Understand you Master. Plz Answer Again: ";
+                        goto closedCurtainAnswerAgain;
+                    }
+                    else
+                    {
+                        wrongBeep();
+                        cout << "I dont Understand You Sir. Answer Again: ";
+                        goto closedCurtainAnswerAgain;
+                    }
+                }
+            }
+
+            /////////////////////////// Curtains already opened //////////////////////////
+            if (switchCurtain == 1)
+            {
+                cout << "Do you want me to close curtain?" << endl;
+                string curtainAnswer;
+                openedCurtainAnswerAgain:
+                getline (cin, curtainAnswer);
+                if (curtainAnswer == "Yes" || curtainAnswer == "YES" || curtainAnswer == "yes" || curtainAnswer == "Y" || curtainAnswer == "y")
+                {
+                    optionSelectYesBeep();
+                    switchCurtain = 0;
+                    cout << "Curtains are closed now." << endl;
+                    goto MasterRoom;
+                }
+                else if (curtainAnswer == "No" || curtainAnswer == "NO" || curtainAnswer == "no" || curtainAnswer == "N" || curtainAnswer == "n")
+                {
+                    if (Master == 1)
+                    {
+                        noBeep();
+                        cout << "Okay Master.." << endl;
+                        goto MasterRoom;
+                    }
+                    else
+                    {
+                        noBeep();
+                        cout << "Okay.." << endl;
+                        goto MasterRoom;
+                    }
+                    
+                }
+                else
+                {
+                    if (Master == 1)
+                    {
+                        cout << "I dont understand you Master. Plz Answer Again: ";
+                        goto openedCurtainAnswerAgain;
+                    }
+                    
+                }
+                
+            }
+        
+            
+        
+        default:
+            break;
+        }
+
+
+
     
     default:
         break;

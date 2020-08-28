@@ -45,12 +45,12 @@ inline void wrongBeep()
 inline void correctBeep()
 {
     Beep(150, 800);
-    Beep(500, 150);
+    Beep(400, 150);
 }
 
 inline void optionSelectYesBeep()
 {
-    Beep(500, 150);
+    Beep(400, 150);
 }
 
 inline void noBeep()
@@ -224,7 +224,7 @@ main()
 
     //////////////////////// Corridor Options /////////////////////////
 
-
+    corridorOption:
     cout << endl;
     cout << "    1) Master Room" << endl;
     cout << "    2) Guest Room" << endl;
@@ -246,44 +246,108 @@ main()
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
-    ///////////////////// Corridor Switch /////////////////////////////
+
+    //////////////////// Corridor Switch ////////////////////////////
     switch (corridorOptionSelect)
     {
-    case 1:
-        cout << "Master room" << endl;
-        break;
-
-    case 2:
-        cout << "Guest room" << endl;
-        break;
-
-    case 3:
-        cout << "Living room" << endl;
-        break;
-
-    case 4:
-        cout << "Kitchen" << endl;
-        break;
-
-    case 5:
-        cout << "Lights" << endl;
-        break;
-
-    case 6:
-        cout << "Music" << endl;
-        break;
-
-    case 7:
-        cout << "Go out of the house (Temperory)" << endl;
-        break;
-
     case 8:
-        cout << "Leave house" << endl;
-        break;
-    
+        optionSelectYesBeep();
+        if (Master == 1 && Guest == 1)
+        {
+            cout << "Who is going?" << endl;
+            cout << "   1) Both" << endl;
+            cout << "   2) Master" << endl;
+            cout << "   3) Guest" << endl;
+            cout << "   4) No one" << endl;
+            int leaveAnswer;
+            leaveAnswerAgain:
+            while (!(cin >> leaveAnswer))
+            {
+                wrongBeep();
+                cout << "Invalid Input. Enter Again: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            switch (leaveAnswer)
+            {
+            case 1:
+                optionSelectYesBeep();
+                switchMasterRoomLight = 0;
+                switchcorridorlight = 0;
+                switchCurtain = 0;
+                switchmusic = 0;
+                switchTv = 0;
+                switchGuestRoomLight = 0;
+                switchLivingRoomLight = 0;
+                Master = 0;
+                Guest = 0;
+                cout << "(All electrical appliances (lights, music player, etc) are turned off.)" << endl;
+                cout << "(Curtains are also closed)" << endl;
+                cout << "Bye Everyone.. Take care of yourselves." << endl;
+                cout << "(Main Door gets locked after both of you gets out of the house)" << endl;
+                break;
+
+            case 2:
+                optionSelectYesBeep();
+                Master = 0;
+                cout << "Goodbye Master.. See you soon." << endl;
+                cout << "(Door gets locked when you get out of the house)" << endl;
+                break;
+
+            case 3:
+                optionSelectYesBeep();
+                Guest = 0;
+                cout << "Goodbye Sir.. Take care of yourself." << endl;
+                cout << "(Door gets locked when you get out of the house)" << endl;
+                break;
+
+            case 4:
+                optionSelectYesBeep();
+                cout << "Okay..!" << endl;
+                goto corridorOption;
+            
+            default:
+                wrongBeep();
+                cout << "Invalid option. Select Again: ";
+                goto leaveAnswerAgain;
+            }
+        }
+        else if (Master == 1 && Guest == 0)
+        {
+            switchMasterRoomLight = 0;
+            switchcorridorlight = 0;
+            switchCurtain = 0;
+            switchmusic = 0;
+            switchTv = 0;
+            switchGuestRoomLight = 0;
+            switchLivingRoomLight = 0;
+            Master = 0;
+            cout << "(All electrical appliances (lights, music player, etc) are turned off.)" << endl;
+            cout << "(Curtains are also closed)" << endl;
+            cout << "Bye Master.. See you soon." << endl;
+            cout << "(Main Door gets locked after you get out of the house)" << endl;
+        }
+        else if (Master == 0 && Guest == 1)
+        {
+            switchMasterRoomLight = 0;
+            switchcorridorlight = 0;
+            switchCurtain = 0;
+            switchmusic = 0;
+            switchTv = 0;
+            switchGuestRoomLight = 0;
+            switchLivingRoomLight = 0;
+            Guest == 0;
+            cout << "(All electrical appliances (lights, music player, etc) are turned off.)" << endl;
+            cout << "(Curtains are also closed)" << endl;
+            cout << "Good Bye Sir.. Take care of yourself..!" << endl;
+            cout << "(Main Door gets locked after you get out of the house)" << endl;
+        }
+        
+        exit(0);
+
     default:
         wrongBeep();
-        cout << "Invalid Input. Select Again: ";
+        cout << "Invalid Option. Select again: ";
         goto corridorOptionSelectAgain;
     }
 

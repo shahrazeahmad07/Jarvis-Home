@@ -101,26 +101,29 @@ void mainDoorBurglarProtocol()
 //////////////////////////////// Guest Check /////////////////////////////////////
 void guestCheck()
 {
-    cout << "Is Someone else with you?" << endl;
-    string someoneAnswer;
-    someoneAnswerAgain:
-    getline (cin, someoneAnswer);
-    if (someoneAnswer == "Yes" || someoneAnswer == "YES" || someoneAnswer == "yes" || someoneAnswer == "y" || someoneAnswer == "Y")
+    if (Guest != 1)
     {
-        optionSelectYesBeep();
-        Guest = 1;
-        cout << "O Nice. Welcome our Guest.. This is me Jarvis." << endl;
-    }
-    else if (someoneAnswer == "No" || someoneAnswer == "NO" || someoneAnswer == "no" || someoneAnswer == "n" || someoneAnswer == "N")
-    {
-        noBeep();
-        cout << "Okay Sir.." << endl;
-    }
-    else
-    {
-        wrongBeep();
-        cout << "I Dont understand you Master. Plz Answer Again: ";
-        goto someoneAnswerAgain;
+        cout << "Is Someone else with you?" << endl;
+        string someoneAnswer;
+        someoneAnswerAgain:
+        getline (cin, someoneAnswer);
+        if (someoneAnswer == "Yes" || someoneAnswer == "YES" || someoneAnswer == "yes" || someoneAnswer == "y" || someoneAnswer == "Y")
+        {
+            optionSelectYesBeep();
+            Guest = 1;
+            cout << "O Nice. Welcome our Guest.. This is me Jarvis." << endl;
+        }
+        else if (someoneAnswer == "No" || someoneAnswer == "NO" || someoneAnswer == "no" || someoneAnswer == "n" || someoneAnswer == "N")
+        {
+            noBeep();
+            cout << "Okay Sir.." << endl;
+        }
+        else
+        {
+            wrongBeep();
+            cout << "I Dont understand you Master. Plz Answer Again: ";
+            goto someoneAnswerAgain;
+        }
     }
 }
 

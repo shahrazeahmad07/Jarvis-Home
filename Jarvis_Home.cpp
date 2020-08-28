@@ -196,12 +196,62 @@ main()
     cout << "    1) Master Room" << endl;
     cout << "    2) Guest Room" << endl;
     cout << "    3) Living Room" << endl;
-    cout << "    4) Kitchen Room" << endl;
+    cout << "    4) Kitchen" << endl;
     cout << "    5) Lights" << endl;
     cout << "    6) Music" << endl;
-    cout << "    7) Go Outsie house(Temperory)" << endl;
+    cout << "    7) Go Out of the house(Temperory)" << endl;
     cout << "    8) Leave house" << endl;
+    cout << endl;
 
+    //////////////////// Corridor Option Select //////////////////////
+    int corridorOptionSelect;
+    corridorOptionSelectAgain:
+    while (!(cin >> corridorOptionSelect))
+    {
+        cout << "Invalid Input. Select Again: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    ///////////////////// Corridor Switch /////////////////////////////
+    switch (corridorOptionSelect)
+    {
+    case 1:
+        cout << "Master room" << endl;
+        break;
+
+    case 2:
+        cout << "Guest room" << endl;
+        break;
+
+    case 3:
+        cout << "Living room" << endl;
+        break;
+
+    case 4:
+        cout << "Kitchen" << endl;
+        break;
+
+    case 5:
+        cout << "Lights" << endl;
+        break;
+
+    case 6:
+        cout << "Music" << endl;
+        break;
+
+    case 7:
+        cout << "Go out of the house (Temperory)" << endl;
+        break;
+
+    case 8:
+        cout << "Leave house" << endl;
+        break;
+    
+    default:
+        cout << "Invalid Input. Select Again: ";
+        goto corridorOptionSelectAgain;
+    }
 
     return 0;
 }

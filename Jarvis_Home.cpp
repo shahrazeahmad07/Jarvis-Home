@@ -73,26 +73,8 @@ void mainDoorBurglarProtocol()
         cout << "I have also called Police at that time. You can now ask the police about the\n\
  situation." << endl;
         cout << "Get Relax. Everything is safe." << endl;
-        cout << "Do you want me to turn on the music?" << endl;
-    musicAnswerAgain:
-    getline(cin, musicAnswer);
-    if (musicAnswer == "Yes" || musicAnswer == "yes" || musicAnswer == "Y" || musicAnswer == "y")
-    {
-        cout << "Playing Music.." << endl;
-        switchmusic = 1;
-        cout << "(music is playing)" << endl;
-    }
-    else if (musicAnswer == "No" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n")
-    {
-        cout << "Okay Sir..!" << endl;
-    }
-    else
-    {
-        cout << "Dont Understand you Sir.\nPlease tell me again: ";
-        goto musicAnswerAgain;
-    }
-
-
+        cout << "Now ";
+        
     }
 }
 
@@ -155,6 +137,8 @@ main()
     ///////////// Corridor /////////////
     cout << "(Lights of corridor and Kitchen are turned on. Some basic lights of the house\n\
  are also turned on)" << endl;
+
+    Corridor:
     cout << "Do you want me to turn on the music?" << endl;
     musicAnswerAgain:
     getline(cin, musicAnswer);
@@ -174,11 +158,15 @@ main()
         goto musicAnswerAgain;
     }
     
-    Corridor:
-    
-    
-    
-    
+    cout << endl;
+    cout << "    1) Master Room" << endl;
+    cout << "    2) Guest Room" << endl;
+    cout << "    3) Living Room" << endl;
+    cout << "    4) Kitchen Room" << endl;
+    cout << "    5) Lights" << endl;
+    cout << "    6) Music" << endl;
+    cout << "    7) Go Outsie house(Temperory)" << endl;
+    cout << "    8) Leave house" << endl;
 
     return 0;
 }

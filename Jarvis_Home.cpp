@@ -20,6 +20,8 @@ using namespace std;
     bool switchcorridorlight = 0;
     bool switchmusic = 0;
     string musicAnswer;
+    int Master = 0;
+    
 
 
 //////////// Beeps ///////////////////
@@ -36,6 +38,16 @@ inline void correctBeep()
 {
     Beep(150, 800);
     Beep(500, 150);
+}
+
+inline void optionSelectYesBeep()
+{
+    Beep(500, 150);
+}
+
+inline void noBeep()
+{
+    Beep(130, 150);
 }
 
 
@@ -64,6 +76,7 @@ void mainDoorBurglarProtocol()
     else
     {
         correctBeep();
+        Master = 1;
         cout << "Key Accepted. Burglar's Protocol is disabled." << endl;
         cout << "(The house is unsealed and the main door opens. Lights of corridor and kitchen are\n\
  turned on. Some basic lights of the house are also turned on.)" << endl;
@@ -113,6 +126,8 @@ main()
         cout << "Access Granted." << endl;
         correctBeep();
         cout << "Welcome Master..!" << endl;
+        Master = 1;
+
     }
     else if (mainDoorKeyInput == mainDoorKey)
     {
@@ -135,29 +150,38 @@ main()
     }
 
     ///////////// Corridor /////////////
-    cout << "(Lights of corridor and Kitchen are turned on. Some basic lights of the house\n\
- are also turned on)" << endl;
+    cout << "(Main Door opens. Lights of corridor and Kitchen are turned on. Some basic lights\n\
+ of the houseare also turned on)" << endl;
 
     Corridor:
-    cout << "Do you want me to turn on the music?" << endl;
-    musicAnswerAgain:
-    getline(cin, musicAnswer);
-    if (musicAnswer == "Yes" || musicAnswer == "yes" || musicAnswer == "Y" || musicAnswer == "y")
+    if (Master == 1)
     {
-        cout << "Playing Music.." << endl;
-        switchmusic = 1;
-        cout << "(music is playing)" << endl;
-    }
-    else if (musicAnswer == "No" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n")
-    {
-        cout << "Okay Sir..!" << endl;
-    }
-    else
-    {
-        cout << "Dont Understand you Sir.\nPlease tell me again: ";
-        goto musicAnswerAgain;
+        cout << "Do you want me to turn on the music?" << endl;
+        musicAnswerAgain:
+        getline(cin, musicAnswer);
+        if (musicAnswer == "Yes" || musicAnswer == "yes" || musicAnswer == "Y" || musicAnswer == "y")
+        {
+            optionSelectYesBeep();
+            cout << "Playing Music.." << endl;
+            switchmusic = 1;
+            cout << "(music is playing)" << endl;
+        }
+        else if (musicAnswer == "No" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n")
+        {
+            noBeep();
+            cout << "Okay Master..!" << endl;
+        }
+        else
+        {
+            wrongBeep();
+            cout << "I Dont Understand you Master.\nPlease tell me again: ";
+            goto musicAnswerAgain;
+        }
     }
     
+    
+
+
     cout << endl;
     cout << "    1) Master Room" << endl;
     cout << "    2) Guest Room" << endl;
@@ -167,6 +191,26 @@ main()
     cout << "    6) Music" << endl;
     cout << "    7) Go Outsie house(Temperory)" << endl;
     cout << "    8) Leave house" << endl;
+
+    int corridorOption;
+    while (!(cin >> corridorOption))
+    {
+        cout << "Invalid Option. Select Again: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    switch (corridorOption)
+    {
+    case 1:
+        //////////////////// Master Room /////////////////////
+        cout << "(Door of Master Room opens. Lights of Master Room turned on. Music is still\n\
+ playing in the background)";
+
+        break;
+    
+    default:
+        break;
+    }
 
     return 0;
 }

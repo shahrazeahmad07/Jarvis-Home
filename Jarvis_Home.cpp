@@ -329,9 +329,17 @@ main()
                 {
                     if (Master == 1)
                     {
+                        wrongBeep();
                         cout << "I dont understand you Master. Plz Answer Again: ";
                         goto openedCurtainAnswerAgain;
                     }
+                    else
+                    {
+                        wrongBeep();
+                        cout << "I dont understand you Sir. Answer Again: ";
+                        goto openedCurtainAnswerAgain;
+                    }
+                    
                     
                 }
                 

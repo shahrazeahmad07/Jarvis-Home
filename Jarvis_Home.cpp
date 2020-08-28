@@ -23,10 +23,11 @@ using namespace std;
     bool switchMasterRoomLight = 0;
     bool switchGuestRoomLight = 0;
     bool switchLivingRoomLight = 0;
-    bool switchCurtain = 0;
     
     bool switchmusic = 0;
     bool Master = 0;
+    bool switchCurtain = 0;
+    bool switchTv = 0;
     
 
 
@@ -215,13 +216,48 @@ main()
         optionSelectYesBeep();
         cout << "(Door of Master Room opens. Lights of Master Room turned on.)" << endl;
         switchMasterRoomLight = 1;
+        MasterRoom:
+        /////////////////////////// Light check //////////////////////////////
+        if (switchMasterRoomLight == 1)
+        {
+            cout << "(Room Light is on)" << endl;
+        }
+        else
+        {
+            cout << "(Room light is off)" << endl;
+        }
+        
+        /////////////////////////// Music Check //////////////////////////////
         if (switchmusic == 1)
         {
             cout << "(Music is Playing in the background)" << endl;
         }
+        else
+        {
+            cout << "(Music is not Playing in the background)" << endl;
+        }
+        /////////////////////////// Curtains Check ////////////////////////////
+        if (switchCurtain == 1)
+        {
+            cout << "(Curtains are closed)" << endl;
+        }
+        else
+        {
+            cout << "(Curtains are opened)" << endl;
+        }
+        /////////////////////////// TV Check /////////////////////////////////
+        if (switchTv == 1)
+        {
+            cout << "(TV is on)" << endl;
+        }
+        else
+        {
+            cout << "(TV is off)" << endl;
+        }
+        
+        
 
         ////////////////////////// Master Room Options //////////////////////////
-        MasterRoom:
         cout << endl;
         cout << "    1) Curtains" << endl;
         cout << "    2) TV" << endl;
@@ -339,8 +375,6 @@ main()
                         cout << "I dont understand you Sir. Answer Again: ";
                         goto openedCurtainAnswerAgain;
                     }
-                    
-                    
                 }
                 
             }

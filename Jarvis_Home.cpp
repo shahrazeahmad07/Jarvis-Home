@@ -279,6 +279,7 @@ main()
         break;
     
     default:
+        wrongBeep();
         cout << "Invalid Input. Select Again: ";
         goto corridorOptionSelectAgain;
     }

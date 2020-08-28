@@ -211,7 +211,7 @@ main()
             else
             {
                 wrongBeep();
-                cout << "I Dont Understand you Master.\nPlease tell me again: ";
+                cout << "I Dont Understand you Master. Please answer again: ";
                 goto musicAnswerAgain;
             }
         }

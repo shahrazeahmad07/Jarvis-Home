@@ -190,8 +190,7 @@ main()
 
     //////////////////////////// Corridor //////////////////////////////
     switchcorridorlight = 1;
-    cout << "(Main Door opens. Lights of corridor and Kitchen are turned on. Some basic lights\n\
- of the house are also turned on)" << endl;
+    cout << "(Main Door opens. Lights of corridor and Kitchen are turned on.)" << endl;
 
     Corridor:
     if (Master == 1)
@@ -253,6 +252,92 @@ main()
     //////////////////// Corridor Switch ////////////////////////////
     switch (corridorOptionSelect)
     {
+    //////////////////////// Lights /////////////////////////////////
+    case 5:
+        //////////////////////// Lights option ////////////////////////
+        optionSelectYesBeep();
+        cout << "   1) Turn on the light (Corridor and Kitchen)" << endl;
+        cout << "   2) Turn off the light (Corridor and Kitchen)" << endl;
+        cout << "   3) Turn off all the lights" << endl;
+        cout << "   4) Cancel" << endl;
+
+        //////////////////////// Lights option Select ////////////////////////
+        int lightsOptionSelect;
+        lightsOptionSelectAgain:
+        while (!(cin >> lightsOptionSelect))
+        {
+            wrongBeep();
+            cout << "Invalid Input. Input Again: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        
+        //////////////////////// Lights switch //////////////////////////////
+        switch (lightsOptionSelect)
+        {
+        //////////////////////// turn on the light //////////////////////////
+        case 1:
+            if (switchcorridorlight == 1)
+            {
+                noBeep();
+                cout << "Lights of corridor and Kitchen are already on." << endl;
+                goto corridorOption;
+            }
+            else
+            {
+                optionSelectYesBeep();
+                switchcorridorlight = 1;
+                cout << "Lights of corridor and kitchen are turned on." << endl;
+                goto corridorOption;
+            }
+
+        //////////////////////// turn off the lights ////////////////////////
+        case 2:
+            if (switchcorridorlight == 0)
+            {
+                noBeep();
+                cout << "Lights are already off." << endl;
+                goto corridorOption;
+            }
+            else
+            {
+                optionSelectYesBeep();
+                switchcorridorlight = 0;
+                cout << "Lights of the corridor and kitchen are turned off." << endl;
+                goto corridorOption;
+            }
+
+        //////////////////////// turn off all the lights /////////////////////////
+        case 3:
+            if (switchcorridorlight == 0)
+            {
+                noBeep();
+                cout << "Lights are already off." << endl;
+                goto corridorOption;
+            }
+            else
+            {
+                optionSelectYesBeep();
+                switchcorridorlight = 0;
+                switchMasterRoomLight = 0;
+                switchGuestRoomLight = 0;
+                switchLivingRoomLight = 0;
+                cout << "All the lights are turned off." << endl;
+                goto corridorOption;
+            }
+        
+        //////////////////////////// Cancel ////////////////////////////////
+        case 4:
+            noBeep();
+            goto corridorOption;
+        
+        //////////////////////////// Invalid light input /////////////////////
+        default:
+            wrongBeep();
+            cout << "Invalid Input. Enter Again: ";
+            goto lightsOptionSelectAgain;
+        }
+
     //////////////////////// Music //////////////////////////////////
     case 6:
         optionSelectYesBeep();

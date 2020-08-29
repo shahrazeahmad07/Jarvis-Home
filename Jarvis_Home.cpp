@@ -19,6 +19,7 @@ using namespace std;
     string burglarMasterKeyInput;
     string musicAnswer;
     string getBackIn;
+    string recipieAnswer;
 
     bool switchcorridorlight = 0;
     bool switchMasterRoomLight = 0;
@@ -31,6 +32,9 @@ using namespace std;
     bool switchCurtain = 0;
     bool switchTv = 0;
     int musicVolume = 67;
+    int proteinIngredients = 3;
+    int coffeeIngredients = 3;
+    int smoothieIngredients = 3;
     
 
 
@@ -142,7 +146,7 @@ main()
     cout << setw(53) << "A Smart Home Agent" << endl;
 
     ///////////// House Description //////////////
-    cout << "(This house has 1 guest room, 1 master room, a kitchen, a drawing room and a corridor.\n\
+    cout << "(This house has 1 guest room, 1 master room, an open kitchen, a drawing room and a corridor.\n\
  There is only one door through which you can enter or leave the house. The Master room has some\n\
  more security features which only master can access. Only Master has a special security key (Master\n\
  key) with which he can open any door of the house. There is also a safe room in Master room\n\
@@ -252,6 +256,131 @@ main()
     //////////////////// Corridor Switch ////////////////////////////
     switch (corridorOptionSelect)
     {
+    /////////////////////// Kitchen ///////////////////////////
+    case 4:
+        optionSelectYesBeep();
+        ////////////////////////// Kitchen Options ////////////////////////
+        kitchenOption:
+        cout << endl;
+        cout << "   1) Make Smoothie" << endl;
+        cout << "   2) Make Coffee" << endl;
+        cout << "   3) Make Protein Shake" << endl;
+        cout << "   4) Search Recipie on Internet" << endl;
+        cout << "   5) Return back to Corridor" << endl;
+        cout << endl;
+
+        ///////////////////////// Kitchen option Select ////////////////////
+        int kitchenOptionSelect;
+        kitchenOptionSelectAgain:
+        while (!(cin >> kitchenOptionSelect))
+        {
+            wrongBeep();
+            cout << "Wrong Input. Input Again: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        ///////////////////////////// Kitchen Switch /////////////////////////////
+        switch (kitchenOptionSelect)
+        {
+        //////////////////////// Make Smoothie ////////////////////////////
+        case 1:
+            if (smoothieIngredients == 0)
+            {
+                noBeep();
+                cout << "The Ingredients used to make Smoothie are end. Refill first plz." << endl;
+                goto kitchenOption;
+            }
+            else
+            {
+                optionSelectYesBeep();
+                cout << "Making Smoothie";
+                for (int i = 0; i < 3; i++)
+                {
+                    Beep(0, 1000);
+                    cout << ".";
+                }
+                cout << endl;
+                optionSelectYesBeep();
+                cout << "Smoothie is Ready" << endl;
+                smoothieIngredients = smoothieIngredients - 1;
+                goto kitchenOption;
+            }
+            
+
+        ///////////////////////// Make Coffee ///////////////////////////////
+        case 2:
+            if (coffeeIngredients == 0)
+            {
+                noBeep();
+                cout << "The Ingredients used to make Coffee are end. Refill first plz." << endl;
+                goto kitchenOption;
+            }
+            else
+            {
+                optionSelectYesBeep();
+                cout << "Making Coffee";
+                for (int i = 0; i < 3; i++)
+                {
+                    Beep(0, 1000);
+                    cout << ".";
+                }
+                cout << endl;
+                optionSelectYesBeep();
+                cout << "Coffee is Ready" << endl;
+                coffeeIngredients = coffeeIngredients - 1;
+                goto kitchenOption;
+            }
+            
+
+        /////////////////////////// Make Protein Shake //////////////////////////
+        case 3:
+            if (proteinIngredients == 0)
+            {
+                noBeep();
+                cout << "The Ingredients used to make Protein Shake are end. Refill first plz." << endl;
+                goto kitchenOption;
+            }
+            else
+            {
+                optionSelectYesBeep();
+                cout << "Making Protein Shake";
+                for (int i = 0; i < 3; i++)
+                {
+                    Beep(0, 1000);
+                    cout << ".";
+                }
+                cout << endl;
+                optionSelectYesBeep();
+                cout << "Protein Shake is Ready" << endl;
+                proteinIngredients = proteinIngredients - 1;
+                goto kitchenOption;
+            }
+
+        /////////////////////////// Search Recipie on Internet ////////////////////////
+        case 4:
+            optionSelectYesBeep();
+            cout << "Which Recipie you want to search? (spaces in the name must be replaced with underscore)" << endl;
+            cin >> recipieAnswer;
+            optionSelectYesBeep();
+            cout << "Searching Recipie of " << recipieAnswer << " on the Internet...." << endl;
+            Beep(0, 3000);
+            optionSelectYesBeep();
+            cout << "Showing search results on the screen next to stove." << endl;
+            goto kitchenOption;
+
+        ///////////////////////////// Return back to corridor /////////////////////////
+        case 5:
+            optionSelectYesBeep();
+            goto corridorOption;
+        
+        ////////////////////////////// Kitchen Invalid ///////////////////////////////
+        default:
+            wrongBeep();
+            cout << "Invalid Input. Input Again: ";
+            goto kitchenOptionSelectAgain;
+        }
+
     //////////////////////// Lights /////////////////////////////////
     case 5:
         //////////////////////// Lights option ////////////////////////

@@ -14,10 +14,11 @@ using namespace std;
 
 
 ///////////// Global Variables ///////////
-    string burglarMasterKeyInput;
     string MasterKey = "74588";
     string mainDoorKey = "12345";
+    string burglarMasterKeyInput;
     string musicAnswer;
+    string getBackIn;
 
     bool switchcorridorlight = 0;
     bool switchMasterRoomLight = 0;
@@ -223,7 +224,6 @@ main()
 
 
     //////////////////////// Corridor Options /////////////////////////
-
     corridorOption:
     cout << endl;
     cout << "    1) Master Room" << endl;
@@ -241,6 +241,7 @@ main()
     corridorOptionSelectAgain:
     while (!(cin >> corridorOptionSelect))
     {
+        wrongBeep();
         cout << "Invalid Input. Select Again: ";
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -251,9 +252,248 @@ main()
     switch (corridorOptionSelect)
     {
 
+    //////////////////// Go Out of the House ////////////////////////
+    case 7:
+        optionSelectYesBeep();
+        /////////////////////////// both in house ///////////////////////////
+        if (Master == 1 && Guest == 1)
+        {
+            cout << "Who is going?" << endl;
+            cout << "   1) Both" << endl;
+            cout << "   2) Master" << endl;
+            cout << "   3) Guest" << endl;
+            cout << "   4) No one" << endl;
+            int goOutAnswer;
+            goOutAnswerAgain:
+            while (!(cin >> goOutAnswer))
+            {
+                wrongBeep();
+                cout << "Invalid Input. Enter Again: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            switch (goOutAnswer)
+            {
+            //////////////////////////// Both going outside //////////////////////////
+            case 1:
+                optionSelectYesBeep();
+                Master = 0;
+                Guest = 0;
+                cout << "(The Door gets locked when both of you gets out of the house)" << endl;
+                bothAskGettingBackInAgain:
+                cout << "Getting back in?" << endl;
+                bothGetBackInAgain:
+                cin >> getBackIn;
+                if (getBackIn == "Yes" || getBackIn == "YES" || getBackIn == "yes" || getBackIn == "y" || getBackIn == "Y")
+                {
+                    optionSelectYesBeep();
+                    cout << "Who is getting in?" << endl;
+                    cout << "   1) Both" << endl;
+                    cout << "   2) Master" << endl;
+                    cout << "   3) Guest" << endl;
+                    cout << "   4) No one" << endl;
+                    int bothOutAnswer;
+                    bothOutAnswerAgain:
+                    while (!(cin >> bothOutAnswer))
+                    {
+                        wrongBeep();
+                        cout << "Invalid Input. Enter Again: ";
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    }
+                    switch (bothOutAnswer)
+                    {
+                    //////////////// both getting in //////////////////////
+                    case 1:
+                        optionSelectYesBeep();
+                        Master = 1;
+                        Guest = 1;
+                        cout << "(the door opens automatically without entring key)" << endl;
+                        cout << "(the door gets locked when both of you gets back in the house)" << endl;
+                        goto corridorOption;
+                    
+                    //////////////// Master getting in ////////////////////
+                    case 2:
+                        optionSelectYesBeep();
+                        Master = 1;
+                        cout << "(the door opens automatically without entring key)" << endl;
+                        cout << "(the door gets locked when you get back in the house)" << endl;
+                        goto corridorOption;
+
+                    //////////////// Guest getting in /////////////////////
+                    case 3:
+                        optionSelectYesBeep();
+                        Guest = 1;
+                        cout << "(the door opens automatically without entring key)" << endl;
+                        cout << "(the door gets locked when you get back in the house)" << endl;
+                        goto corridorOption;
+                    
+                    //////////////// No one getting in /////////////////////
+                    case 4:
+                        noBeep();
+                        cout << "Okay.." << endl;
+                        goto bothAskGettingBackInAgain;
+
+                    default:
+                        wrongBeep();
+                        cout << "Invalid input. Enter Again: ";
+                        goto bothOutAnswerAgain;
+                    }
+                    
+                }
+
+                /////////////////////////// no Getting back in //////////////////////////////////
+                else if (getBackIn == "No" || getBackIn == "NO" || getBackIn == "no" || getBackIn == "n" || getBackIn == "N")
+                {
+                    noBeep();
+                    cout << "Okay.." << endl;
+                    goto bothAskGettingBackInAgain;
+                }
+                /////////////////////////////// wrong getting back in /////////////////////////////
+                else
+                {
+                    wrongBeep();
+                    cout << "I dont Understand you..! Answer Again: ";
+                    goto bothGetBackInAgain;
+                }
+                
+            //////////////////////////// Master going out ////////////////////////////////
+            case 2:
+                optionSelectYesBeep();
+                Master = 0;
+                cout << "(the Door gets locked when you get out of the house)" << endl;
+                bothmasterAskGettingBackInAgain:
+                cout << "Getting back in?" << endl; 
+                bothMasterGetBackInAgain:
+                cin >> getBackIn;
+                if (getBackIn == "Yes" || getBackIn == "YES" || getBackIn == "yes" || getBackIn == "y" || getBackIn == "Y")
+                {
+                    optionSelectYesBeep();
+                    Master = 1;
+                    cout << "(The door Opens automatically without entring key)" << endl;
+                    cout << "(The door gets locked when you get back in the house)" << endl;
+                    goto corridorOption;
+                }
+                else if (getBackIn == "No" || getBackIn == "NO" || getBackIn == "no" || getBackIn == "n" || getBackIn == "N")
+                {
+                    noBeep();
+                    cout << "Okay Master.." << endl;
+                    goto bothmasterAskGettingBackInAgain;
+                }
+                else
+                {
+                    wrongBeep();
+                    cout << "I dont Understand you Master..! Answer Again: ";
+                    goto bothMasterGetBackInAgain;
+                }
+            
+            //////////////////////////// Guest going out //////////////////////////////////
+            case 3:
+                optionSelectYesBeep();
+                Guest = 0;
+                cout << "(the Door gets locked when you get out of the house)" << endl;
+                guestAskGettingBackInAgain:
+                cout << "getting back in?" << endl;
+                guestGetBackInAgain:
+                cin >> getBackIn;
+                if (getBackIn == "Yes" || getBackIn == "YES" || getBackIn == "yes" || getBackIn == "y" || getBackIn == "Y")
+                {
+                    optionSelectYesBeep();
+                    Guest = 1;
+                    cout << "(The door Opens automatically without entring key)" << endl;
+                    cout << "(The door gets locked when you get back in the house)" << endl;
+                    goto corridorOption;
+                }
+                else if (getBackIn == "No" || getBackIn == "NO" || getBackIn == "no" || getBackIn == "n" || getBackIn == "N")
+                {
+                    noBeep();
+                    cout << "Okay Sir.." << endl;
+                    goto guestAskGettingBackInAgain;
+                }
+                else
+                {
+                    wrongBeep();
+                    cout << "I dont Understand you Sir..! Answer Again: ";
+                    goto guestGetBackInAgain;
+                }
+
+            case 4:
+                ////////////////// no one /////////////////////
+                noBeep();
+                cout << "Okay..!" << endl;
+                goto corridorOption;
+            
+            default:
+                wrongBeep();
+                cout << "Invalid option. Select Again: ";
+                goto goOutAnswerAgain;
+            }
+        }
+        /////////////////////////// Master only ///////////////////////////////
+        else if (Master == 1 && Guest == 0)
+        {
+            Master = 0;
+            cout << "(The Door gets locked when you get out of the house)" << endl;
+            masterAskGettingBackInAgain:
+            cout << "Getting back in?" << endl; 
+            masterGetBackInAgain:
+            cin >> getBackIn;
+            if (getBackIn == "Yes" || getBackIn == "YES" || getBackIn == "yes" || getBackIn == "y" || getBackIn == "Y")
+            {
+                optionSelectYesBeep();
+                Master = 1;
+                cout << "(The door Opens automatically without entring key)" << endl;
+                cout << "(The door gets locked when you get back in the house)" << endl;
+                goto corridorOption;
+            }
+            else if (getBackIn == "No" || getBackIn == "NO" || getBackIn == "no" || getBackIn == "n" || getBackIn == "N")
+            {
+                noBeep();
+                cout << "Okay Master.." << endl;
+                goto masterAskGettingBackInAgain;
+            }
+            else
+            {
+                wrongBeep();
+                cout << "I dont Understand you Master..! Answer Again: ";
+                goto masterGetBackInAgain;
+            }
+        }
+        ////////////////////////////// Guest only ///////////////////////////
+        else if (Master == 0 && Guest == 1)
+        {
+            Guest = 0;
+            cout << "(The Door gets locked when you get out of the house)" << endl;
+            askGettingBackInAgain:
+            cout << "Getting back in?" << endl; 
+            getBackInAgain:
+            cin >> getBackIn;
+            if (getBackIn == "Yes" || getBackIn == "YES" || getBackIn == "yes" || getBackIn == "y" || getBackIn == "Y")
+            {
+                optionSelectYesBeep();
+                Guest = 1;
+                cout << "(The door Opens automatically without entring key)" << endl;
+                cout << "(The door gets locked when you get back in the house)" << endl;
+                goto corridorOption;
+            }
+            else if (getBackIn == "No" || getBackIn == "NO" || getBackIn == "no" || getBackIn == "n" || getBackIn == "N")
+            {
+                noBeep();
+                cout << "Okay Sir.." << endl;
+                goto askGettingBackInAgain;
+            }
+            else
+            {
+                wrongBeep();
+                cout << "I dont Understand you Sir..! Answer Again: ";
+                goto getBackInAgain;
+            }
+        }
+
     //////////////////// Leave House /////////////////////////////
     case 8:
         optionSelectYesBeep();
+        ////////////////////////// Both in house /////////////////////////
         if (Master == 1 && Guest == 1)
         {
             cout << "Who is going?" << endl;
@@ -272,6 +512,7 @@ main()
             }
             switch (leaveAnswer)
             {
+            /////////////////////////// Both leaving ///////////////////////////////                
             case 1:
                 optionSelectYesBeep();
                 switchMasterRoomLight = 0;
@@ -289,6 +530,7 @@ main()
                 cout << "(Main Door gets locked after both of you gets out of the house)" << endl;
                 break;
 
+            ////////////////////// Master leaving ///////////////////////////////
             case 2:
                 optionSelectYesBeep();
                 Master = 0;
@@ -296,6 +538,7 @@ main()
                 cout << "(Door gets locked when you get out of the house)" << endl;
                 break;
 
+            //////////////////// Guest leaving //////////////////////
             case 3:
                 optionSelectYesBeep();
                 Guest = 0;
@@ -303,6 +546,7 @@ main()
                 cout << "(Door gets locked when you get out of the house)" << endl;
                 break;
 
+            //////////////////// no one leaving ///////////////////////////
             case 4:
                 optionSelectYesBeep();
                 cout << "Okay..!" << endl;
@@ -314,6 +558,7 @@ main()
                 goto leaveAnswerAgain;
             }
         }
+        ////////////////////////// Master only ///////////////////////////
         else if (Master == 1 && Guest == 0)
         {
             switchMasterRoomLight = 0;
@@ -329,6 +574,7 @@ main()
             cout << "Bye Master.. See you soon." << endl;
             cout << "(Main Door gets locked after you get out of the house)" << endl;
         }
+        //////////////////////// Guest only ////////////////////////////
         else if (Master == 0 && Guest == 1)
         {
             switchMasterRoomLight = 0;
@@ -347,6 +593,7 @@ main()
         
         exit(0);
 
+    ////////////////////// Corridor Invalid Option ///////////////////////
     default:
         wrongBeep();
         cout << "Invalid Option. Select again: ";

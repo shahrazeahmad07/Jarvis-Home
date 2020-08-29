@@ -30,6 +30,7 @@ using namespace std;
     bool Guest = 0;
     bool switchCurtain = 0;
     bool switchTv = 0;
+    int musicVolume = 67;
     
 
 
@@ -127,6 +128,7 @@ void guestCheck()
         }
     }
 }
+
 
 
 /// =============================================================================== ///
@@ -251,6 +253,111 @@ main()
     //////////////////// Corridor Switch ////////////////////////////
     switch (corridorOptionSelect)
     {
+    //////////////////////// Music //////////////////////////////////
+    case 6:
+        optionSelectYesBeep();
+        //////////////////////// Music Options /////////////////////////
+        cout << "   1) Turn Music On" << endl;
+        cout << "   2) Turn Music Off" << endl;
+        cout << "   3) Music Volume" << endl;
+        cout << "   4) Cancel" << endl;
+        /////////////////////// Music Input ////////////////////////////
+        int musicOption;
+        musicOptionAgain:
+        while (!(cin >> musicOption))
+        {
+            wrongBeep();
+            cout << "Invalid Input. Select again: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        /////////////////////// Music Switch //////////////////////////
+        switch (musicOption)
+        {
+        /////////////////////// Music on //////////////////////////////
+        case 1:
+            if (switchmusic == 1)
+            {
+                noBeep();
+                cout << "Music is already playing" << endl;
+                goto corridorOption;
+            }
+            else
+            {
+                optionSelectYesBeep();
+                switchmusic = 1;
+                cout << "Music is turned on. And Music Volume is " << musicVolume << endl;
+                goto corridorOption;
+            }
+            
+            
+
+        /////////////////////// Music off /////////////////////////////
+        case 2:
+            if (switchmusic == 0)
+            {
+                noBeep();
+                cout << "Music is already off" << endl;
+                goto corridorOption;
+            }
+            else
+            {
+                optionSelectYesBeep();
+                switchmusic = 0;
+                musicVolume = 67;
+                cout << "Music is turned off" << endl;
+                goto corridorOption;
+            }
+            
+        //////////////////////// Music Volume /////////////////////////
+        case 3:
+            if (switchmusic == 1)
+            {
+                optionSelectYesBeep();
+                cout << endl;
+                cout << "Volume of Music is currently at " << musicVolume << endl;
+                cout << "Enter new Volume (from 1 to 100)" << endl;
+                int newVolumeMusic;
+                newVolumeMusicAgain:
+                while (!(cin >> newVolumeMusic))
+                {
+                    wrongBeep();
+                    cout << "Invalid Input. Enter Again: ";
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                if (!(newVolumeMusic >= 1) || !(newVolumeMusic <= 100))
+                {
+                    wrongBeep();
+                    cout << "Wrong Volume Level. Volume can be any level between 1 to 100 only. Enter again: ";
+                    goto newVolumeMusicAgain;
+                }
+                else
+                {
+                    optionSelectYesBeep();
+                    musicVolume = newVolumeMusic;
+                    cout << "Volume of music is set to " << newVolumeMusic << endl;
+                    goto corridorOption;
+                }
+            }
+            else
+            {
+                noBeep();
+                cout << "Music is currently off" << endl;
+                goto corridorOption;
+            }
+            
+        ///////////////////////// Cancel //////////////////////////////
+        case 4:
+            noBeep();
+            goto corridorOption;
+        
+        //////////////////////// Music Invalid select /////////////////////////
+        default:
+            wrongBeep();
+            cout << "Invalid Input. Select again: ";
+            goto musicOptionAgain;
+        }
 
     //////////////////// Go Out of the House ////////////////////////
     case 7:

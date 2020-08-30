@@ -134,6 +134,16 @@ void guestCheck()
 }
 
 
+////////////////////////////////////// Music Check ////////////////////////////////
+void musicCheck()
+{
+    if (switchmusic == 1)
+    {
+        cout << "(Music is playing in the background)" << endl;
+    }
+}
+
+
 
 /// =============================================================================== ///
 
@@ -210,7 +220,7 @@ main()
                 optionSelectYesBeep();
                 cout << "Playing Music.." << endl;
                 switchmusic = 1;
-                cout << "(music is playing)" << endl;
+                cout << "(music is playing now)" << endl << endl;
             }
             else if (musicAnswer == "No" || musicAnswer == "NO" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n")
             {
@@ -227,9 +237,11 @@ main()
     }
     
 
-
     //////////////////////// Corridor Options /////////////////////////
     corridorOption:
+    cout << endl;
+    cout << "(You are in the corridor)" << endl;
+    musicCheck();
     cout << endl;
     cout << "    1) Master Room" << endl;
     cout << "    2) Guest Room" << endl;
@@ -261,6 +273,9 @@ main()
         optionSelectYesBeep();
         ////////////////////////// Kitchen Options ////////////////////////
         kitchenOption:
+        cout << endl;
+        cout << "(You are in the kitchen)" << endl;
+        musicCheck();
         cout << endl;
         cout << "   1) Make Smoothie" << endl;
         cout << "   2) Make Coffee" << endl;
@@ -363,9 +378,14 @@ main()
             cout << "Which Recipie you want to search? (spaces in the name must be replaced with underscore)" << endl;
             cin >> recipieAnswer;
             optionSelectYesBeep();
-            cout << "Searching Recipie of " << recipieAnswer << " on the Internet...." << endl;
-            Beep(0, 3000);
+            cout << "Searching Recipie of " << recipieAnswer << " on the Internet";
+            for (int i = 0; i < 3; i++)
+                {
+                    Beep(0, 1000);
+                    cout << ".";
+                }
             optionSelectYesBeep();
+            cout << endl;
             cout << "Showing search results on the screen next to stove." << endl;
             goto kitchenOption;
 

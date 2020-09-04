@@ -20,6 +20,7 @@ using namespace std;
     string musicAnswer;
     string getBackIn;
     string recipieAnswer;
+    string livingCurtainAnswer;
 
     bool switchcorridorlight = 0;
     bool switchMasterRoomLight = 0;
@@ -35,6 +36,14 @@ using namespace std;
     int proteinIngredients = 3;
     int coffeeIngredients = 3;
     int smoothieIngredients = 3;
+    int livingLightIntensity = 7;
+    bool switchLivingRoomTv = 0;
+    int livingTvChannel = 05;
+    int livingTvVolume = 67;
+    
+
+
+    bool livingRoomCurtains = 0;
     
 
 
@@ -144,7 +153,35 @@ void musicCheck()
 }
 
 
+/////////////////////////////////////// Living room Curtains check /////////////////////////
+void livingCurtainCheck()
+{
+    if (livingRoomCurtains == 0)
+    {
+        cout << "(Curtains are closed right now)" << endl;
+    }
+    else
+    {
+        cout << "(Curtains are open)" << endl;
+    }
+}
 
+
+//////////////////////////////////// Living Room Tv Check ///////////////////////
+void livingTvCheck()
+{
+    if (switchLivingRoomTv == 1)
+    {
+        cout << "(Tv is on and current channel is " << livingTvChannel << " and volume is " << livingTvVolume << ")" << endl;
+    }
+}
+
+
+
+
+
+
+/// =============================================================================== ///
 /// =============================================================================== ///
 
 
@@ -268,6 +305,474 @@ main()
     //////////////////// Corridor Switch ////////////////////////////
     switch (corridorOptionSelect)
     {
+    //////////////////////////// Living Room //////////////////////////
+    case 3:
+        optionSelectYesBeep();
+        cout << endl;
+        cout << "(The Door of living room opens)" << endl;
+        cout << "(The Lights of the living room turns on)" << endl;
+        switchLivingRoomLight = 1;
+        ////////////////////////////// Living Room Option /////////////////////
+        livingOption:
+        cout << endl;
+        cout << "(You are in the Living room)" << endl;
+        livingCurtainCheck();
+        if (switchLivingRoomTv == 0)
+        {
+            musicCheck();
+        }
+        livingTvCheck();
+        cout << endl;
+        cout << "   1) Lights" << endl;
+        cout << "   2) Cenematic TV" << endl;
+        cout << "   3) Music" << endl;
+        cout << "   4) Curtains" << endl;
+        cout << "   5) Return to corridor" << endl;
+        cout << endl;
+
+        ///////////////////////////// Living Room option Select //////////////////////
+        int livingOptionSelect;
+        livingOptionSelectAgain:
+        while (!(cin >> livingOptionSelect))
+        {
+            wrongBeep();
+            cout << "Invalid Input. Enter Again: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        ////////////////////////////// Living Room Switch ///////////////////////////////
+        switch (livingOptionSelect)
+        {
+        //////////////////////////// Living Lights /////////////////////////////
+        case 1:
+            optionSelectYesBeep();
+            cout << "   1) Turn on the lights" << endl;
+            cout << "   2) Turn off the lights" << endl;
+            cout << "   3) Light Intensity" << endl;
+            cout << "   4) Cancel" << endl;
+
+            //////////////////// Living Lights Option Select //////////////////////////
+            int livingLightsOptionSelect;
+            livingLightsOptionSelectAgain:
+            while (!(cin >> livingLightsOptionSelect))
+            {
+                wrongBeep();
+                cout << "Invaid Input. Enter Again: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            ////////////////////// Living Lights Case /////////////////////////////////
+            switch (livingLightsOptionSelect)
+            {
+            ///////////////////////// Turn on light ///////////////////////
+            case 1:
+                if (switchLivingRoomLight == 1)
+                {
+                    noBeep();
+                    cout << "Lights are already on" << endl;
+                    goto livingOption;
+                }
+                else
+                {
+                    optionSelectYesBeep();
+                    cout << "Lights are turned on" << endl;
+                    switchLivingRoomLight = 1;
+                    goto livingOption;
+                }
+                
+            ///////////////////////// Turn off the light //////////////////
+            case 2:
+                if (switchLivingRoomLight == 0)
+                {
+                    noBeep();
+                    cout << "Lights are already off" << endl;
+                    goto livingOption;
+                }
+                else
+                {
+                    optionSelectYesBeep();
+                    cout << "Lights are turned off" << endl;
+                    switchLivingRoomLight = 0;
+                    livingLightIntensity = 7;
+                    goto livingOption;
+                }
+
+            ///////////////////////// Light Intensity /////////////////////
+            case 3:
+                if (switchLivingRoomLight == 0)
+                {
+                    noBeep();
+                    cout << "Lights are off" << endl;
+                    goto livingOption;
+                }
+                else
+                {
+                    optionSelectYesBeep();
+                    cout << "Light Intensity is at " << livingLightIntensity << endl;
+                    cout << endl;
+                    cout << "Enter new Intensity (from 1 to 7)" << endl;
+                    int newLivingLightIntensity;
+                    newLivingLightIntensityAgain:
+                    while (!(cin >> newLivingLightIntensity))
+                    {
+                        wrongBeep();
+                        cout << "Invalid Input. Input Again: ";
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    }
+                    if (newLivingLightIntensity >= 1 && newLivingLightIntensity <= 7)
+                    {
+                        optionSelectYesBeep();
+                        livingLightIntensity = newLivingLightIntensity;
+                        cout << "Light Intensity is set to " << newLivingLightIntensity << endl;
+                        goto livingOption;
+                    }
+                    else
+                    {
+                        wrongBeep();
+                        cout << "Intensity of light is from 1 to 7 only. Enter Again: ";
+                        goto newLivingLightIntensityAgain;
+                    }
+                }
+                
+            ///////////////////////// Cancel ////////////////////////////
+            case 4:
+                noBeep();
+                cout << "Okay.." << endl;
+                goto livingOption;
+
+            ////////////////////////// Invalid Input //////////////////////            
+            default:
+                wrongBeep();
+                cout << "Invalid Input. Enter Again: " << endl;
+                goto livingLightsOptionSelectAgain;
+            }
+
+
+        //////////////////////////// Living Tv /////////////////////////////////
+        case 2:
+            optionSelectYesBeep();
+            ////////////////////////// Living TV Options ///////////////////
+            livingTvOption:
+            cout << endl;
+            cout << "   1) Turn on TV" << endl;
+            cout << "   2) Turn off TV" << endl;
+            cout << "   3) Change channel to" << endl;
+            cout << "   4) Change Volume" << endl;
+            cout << "   5) Cancel" << endl;
+            cout << endl;
+
+            ////////////////////////// Living TV Option Select ////////////////////////
+            int livingTvOptionSelect;
+            livingTvOptionAgain:
+            while(!(cin >> livingTvOptionSelect))
+            {
+                wrongBeep();
+                cout << "Invalid Input. Enter Again: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            /////////////////////////// Living Tv Switch ///////////////////////////////
+            switch (livingTvOptionSelect)
+            {
+            /////////////////////////// Turn on Tv ///////////////////////
+            case 1:
+                if (switchLivingRoomTv == 1)
+                {
+                    noBeep();
+                    cout << "TV is already on" << endl;
+                    goto livingOption;
+                }
+                else
+                {
+                    optionSelectYesBeep();
+                    switchLivingRoomTv = 1;
+                    cout << "TV is turned on" << endl;
+                    cout << "(TV turns on and current channel is " << livingTvChannel << " and volume is " << livingTvVolume << ")" << endl;
+                    goto livingOption;
+                }
+                
+                
+
+            /////////////////////////// Turn off Tv //////////////////////
+            case 2:
+                if (switchLivingRoomTv == 0)
+                {
+                    noBeep();
+                    cout << "TV is already off" << endl;
+                    goto livingOption;
+                }
+                else
+                {
+                    optionSelectYesBeep();
+                    switchLivingRoomTv = 0;
+                    cout << "TV is turned off" << endl;
+                    cout << "(TV turns off)" << endl;
+                    goto livingOption;
+                }
+
+            /////////////////////////// Change Channel to ////////////////
+            case 3:
+                if (switchLivingRoomTv == 0)
+                {
+                    noBeep();
+                    cout << "Tv is off right now" << endl;
+                    goto livingOption;
+                }
+                else
+                {
+                    optionSelectYesBeep();
+                    cout << "Current channel is " << livingTvChannel << endl;
+                    cout << "Which channel you want me to tune into? (1 to 100)" << endl;
+                    LivingTvChannelAgain:
+                    cin >> livingTvChannel;
+                    if (livingTvChannel >= 1 && livingTvChannel <= 100)
+                    {
+                        optionSelectYesBeep();
+                        cout << "The Channel is changed to " << livingTvChannel << endl;
+                        goto livingOption;
+                    }
+                    else
+                    {
+                        wrongBeep();
+                        cout << "Only 100 channels are available (i.e. 1 to 100). Enter Again: ";
+                        goto LivingTvChannelAgain;
+                    }
+                    
+                }
+                
+            /////////////////////////// Change Volume ////////////////////
+            case 4:
+                if (switchLivingRoomTv == 0)
+                {
+                    noBeep();
+                    cout << "Tv is off right now" << endl;
+                    goto livingOption;
+                }
+                else
+                {
+                    optionSelectYesBeep();
+                    cout << "Current volume is " << livingTvVolume << endl;
+                    cout << "Enter new Volume: (Min Volume = 1, Max Volume is 100, To Mute Enter 0)" << endl;
+                    LivingTvVolumeAgain:
+                    cin >> livingTvVolume;
+                    if (livingTvVolume >= 0 && livingTvVolume <= 100)
+                    {
+                        optionSelectYesBeep();
+                        cout << "The volume is now " << livingTvVolume << endl;
+                        goto livingOption;
+                    }
+                    else
+                    {
+                        wrongBeep();
+                        cout << "Invalid Volume. Enter Again: ";
+                        goto LivingTvVolumeAgain;
+                    }
+                    
+                }
+
+            /////////////////////////// Cancel ////////////////////////////
+            case 5:
+                noBeep();
+                goto livingOption;
+
+            /////////////////////////// Living Tv invalid option /////////////////
+            default:
+                wrongBeep();
+                cout << "Invalid Input. Enter Again: ";
+                goto livingTvOptionAgain;
+            }
+
+        ///////////////////////////// Music //////////////////////////////////
+        case 3:
+            optionSelectYesBeep();
+        //////////////////////// Music Options /////////////////////////
+        cout << "   1) Turn Music On" << endl;
+        cout << "   2) Turn Music Off" << endl;
+        cout << "   3) Music Volume" << endl;
+        cout << "   4) Cancel" << endl;
+        /////////////////////// Music Input ////////////////////////////
+        int musicOption;
+        livingmusicOptionAgain:
+        while (!(cin >> musicOption))
+        {
+            wrongBeep();
+            cout << "Invalid Input. Select again: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        /////////////////////// Music Switch //////////////////////////
+        switch (musicOption)
+        {
+        /////////////////////// Music on //////////////////////////////
+        case 1:
+            if (switchmusic == 1)
+            {
+                noBeep();
+                cout << "Music is already playing" << endl;
+                goto livingOption;
+            }
+            else
+            {
+                optionSelectYesBeep();
+                switchmusic = 1;
+                cout << "Music is turned on. And Music Volume is " << musicVolume << endl;
+                goto livingOption;
+            }
+            
+            
+
+        /////////////////////// Music off /////////////////////////////
+        case 2:
+            if (switchmusic == 0)
+            {
+                noBeep();
+                cout << "Music is already off" << endl;
+                goto livingOption;
+            }
+            else
+            {
+                optionSelectYesBeep();
+                switchmusic = 0;
+                musicVolume = 67;
+                cout << "Music is turned off" << endl;
+                goto livingOption;
+            }
+            
+        //////////////////////// Music Volume /////////////////////////
+        case 3:
+            if (switchmusic == 1)
+            {
+                optionSelectYesBeep();
+                cout << endl;
+                cout << "Volume of Music is currently at " << musicVolume << endl;
+                cout << "Enter new Volume (from 1 to 100)" << endl;
+                int newVolumeMusic;
+                livingnewVolumeMusicAgain:
+                while (!(cin >> newVolumeMusic))
+                {
+                    wrongBeep();
+                    cout << "Invalid Input. Enter Again: ";
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+                if (!(newVolumeMusic >= 1) || !(newVolumeMusic <= 100))
+                {
+                    wrongBeep();
+                    cout << "Wrong Volume Level. Volume can be any level between 1 to 100 only. Enter again: ";
+                    goto livingnewVolumeMusicAgain;
+                }
+                else
+                {
+                    optionSelectYesBeep();
+                    musicVolume = newVolumeMusic;
+                    cout << "Volume of music is set to " << newVolumeMusic << endl;
+                    goto livingOption;
+                }
+            }
+            else
+            {
+                noBeep();
+                cout << "Music is currently off" << endl;
+                goto livingOption;
+            }
+            
+        ///////////////////////// Cancel //////////////////////////////
+        case 4:
+            noBeep();
+            goto livingOption;
+        
+        //////////////////////// Music Invalid select /////////////////////////
+        default:
+            wrongBeep();
+            cout << "Invalid Input. Select again: ";
+            goto livingmusicOptionAgain;
+        }
+
+        ///////////////////////////// Living Curtains //////////////////////////
+        case 4:
+            optionSelectYesBeep();
+            cout << endl;
+            if (livingRoomCurtains == 0)
+            {
+                cout << "Do you want me to open curtains?" << endl;
+                livingCurtainAnswerAgain:
+                cin >> livingCurtainAnswer;
+                if (livingCurtainAnswer == "Yes" || livingCurtainAnswer == "YES" || livingCurtainAnswer == "yes" || livingCurtainAnswer == "Y" || livingCurtainAnswer == "y")
+                {
+                    optionSelectYesBeep();
+                    cout << "Okay..!" << endl;
+                    livingRoomCurtains = 1;
+                    cout << "(Curtains Opens)" << endl;
+                    goto livingOption;
+                }
+                else if (livingCurtainAnswer == "No" || livingCurtainAnswer == "NO" || livingCurtainAnswer == "no" || livingCurtainAnswer == "N" || livingCurtainAnswer == "n")
+                {
+                    noBeep();
+                    cout << "Okay..!" << endl;
+                    goto livingOption;
+                }
+                else
+                {
+                    wrongBeep();
+                    cout << "I Dont Understand you. Please answer again: ";
+                    goto livingCurtainAnswerAgain;
+                }
+            }
+            else
+            {
+                cout << "Do you want me to close the curtains?" << endl;
+                livingOpenCurtainAnswerAgain:
+                cin >> livingCurtainAnswer;
+                if (livingCurtainAnswer == "Yes" || livingCurtainAnswer == "YES" || livingCurtainAnswer == "yes" || livingCurtainAnswer == "Y" || livingCurtainAnswer == "y")
+                {
+                    optionSelectYesBeep();
+                    cout << "Okay..!" << endl;
+                    livingRoomCurtains = 0;
+                    cout << "(Curtains Close)" << endl;
+                    goto livingOption;
+                }
+                else if (livingCurtainAnswer == "No" || livingCurtainAnswer == "NO" || livingCurtainAnswer == "no" || livingCurtainAnswer == "N" || livingCurtainAnswer == "n")
+                {
+                    noBeep();
+                    cout << "Okay..!" << endl;
+                    goto livingOption;
+                }
+                else
+                {
+                    wrongBeep();
+                    cout << "I Dont Understand you. Please answer again: ";
+                    goto livingOpenCurtainAnswerAgain;
+                }
+            }
+
+        //////////////////////////// Return to corridor from Living /////////////////
+        case 5:
+            optionSelectYesBeep();
+            cout << endl;
+            cout << "(All appliances of living room are turned off)" << endl;
+            if(livingRoomCurtains == 1)
+            {
+                livingRoomCurtains = 0;
+                cout << "(Curtains are closed)" << endl;
+            }
+            switchLivingRoomLight = 0;
+            livingLightIntensity = 7;
+            switchLivingRoomTv = 0;
+            livingRoomCurtains = 0;
+            goto corridorOption;
+            
+
+        //////////////////////////// Living Invalid Input //////////////////////////        
+        default:
+            wrongBeep();
+            cout << "Invalid Input. Select Again: ";
+            goto livingOptionSelectAgain;
+        }
+
     /////////////////////// Kitchen ///////////////////////////
     case 4:
         optionSelectYesBeep();
@@ -889,7 +1394,7 @@ main()
 
             //////////////////// no one leaving ///////////////////////////
             case 4:
-                optionSelectYesBeep();
+                noBeep();
                 cout << "Okay..!" << endl;
                 goto corridorOption;
             
@@ -940,6 +1445,6 @@ main()
         cout << "Invalid Option. Select again: ";
         goto corridorOptionSelectAgain;
     }
-
+    
     return 0;
 }

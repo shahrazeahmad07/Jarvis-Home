@@ -23,6 +23,7 @@ using namespace std;
     string livingCurtainAnswer;
     string guestIntruderInputKey;
     string guestLeaveAnswer;
+    string livingLeaveAnswer;
 
     bool switchcorridorlight = 0;
     bool switchMasterRoomLight = 0;
@@ -30,7 +31,7 @@ using namespace std;
     bool switchLivingRoomLight = 0;
     
     bool switchmusic = 0;
-    bool Master = 1;
+    bool Master = 0;
     bool Guest = 0;
     bool switchCurtain = 0;
     bool switchTv = 0;
@@ -372,6 +373,11 @@ main()
                 cout << "(The Lights of the guest room turns on)" << endl;
                 switchGuestRoomLight = 1;
             }
+            else
+            {
+                cout << "(Light of the room is already on)" << endl;
+            }
+            
             ////////////////////////////// Guest Room Option /////////////////////
             guestOption:
             cout << endl;
@@ -844,7 +850,6 @@ main()
             //////////////////////////// Guest Curtains //////////////////////////
             case 4:
                 optionSelectYesBeep();
-                cout << endl;
                 if (guestCurtain == 0)
                 {
                     cout << "Do you want me to open curtains?" << endl;
@@ -1044,8 +1049,16 @@ then say Yes and if not then say No.)" << endl;
         optionSelectYesBeep();
         cout << endl;
         cout << "(The Door of living room opens)" << endl;
-        cout << "(The Lights of the living room turns on)" << endl;
-        switchLivingRoomLight = 1;
+        if (switchLivingRoomLight == 0)
+        {
+            cout << "(The Lights of the living room turns on)" << endl;
+            switchLivingRoomLight = 1;
+        }
+        else
+        {
+            cout << "(Light is already on)" << endl;
+        }
+        
         ////////////////////////////// Living Room Option /////////////////////
         livingOption:
         cout << endl;
@@ -1429,7 +1442,6 @@ then say Yes and if not then say No.)" << endl;
         ///////////////////////////// Living Curtains //////////////////////////
         case 4:
             optionSelectYesBeep();
-            cout << endl;
             if (livingRoomCurtains == 0)
             {
                 cout << "Do you want me to open curtains?" << endl;
@@ -1486,20 +1498,39 @@ then say Yes and if not then say No.)" << endl;
         //////////////////////////// Return to corridor from Living /////////////////
         case 5:
             optionSelectYesBeep();
-            cout << endl;
-            cout << "(All appliances of living room are turned off)" << endl;
-            if(livingRoomCurtains == 1)
+            cout << "Do you want me to turn off all the appliances?" << endl;
+            livingLeaveAnswerAgain:
+            cin >> livingLeaveAnswer;
+            if (livingLeaveAnswer == "Yes" || livingLeaveAnswer == "YES" || livingLeaveAnswer == "yes" || livingLeaveAnswer == "Y" || livingLeaveAnswer == "y")
             {
+                optionSelectYesBeep();
+                cout << endl;
+                cout << "(All appliances of living room are turned off)" << endl;
+                if(livingRoomCurtains == 1)
+                {
+                    livingRoomCurtains = 0;
+                    cout << "(Curtains are closed)" << endl;
+                }
+                switchLivingRoomLight = 0;
+                livingLightIntensity = 7;
+                switchLivingRoomTv = 0;
                 livingRoomCurtains = 0;
-                cout << "(Curtains are closed)" << endl;
+                goto corridorOption;
             }
-            switchLivingRoomLight = 0;
-            livingLightIntensity = 7;
-            switchLivingRoomTv = 0;
-            livingRoomCurtains = 0;
-            goto corridorOption;
+            else if (livingLeaveAnswer == "No" || livingLeaveAnswer == "NO" || livingLeaveAnswer == "no" || livingLeaveAnswer == "N" || livingLeaveAnswer == "n")
+            {
+                noBeep();
+                cout << "Okay.." << endl;
+                goto corridorOption;
+            }
+            else
+            {
+                wrongBeep();
+                cout << "I dont Understand you.. Please answer again: ";
+                goto livingLeaveAnswerAgain;
+            }
             
-
+            
         //////////////////////////// Living Invalid Input //////////////////////////        
         default:
             wrongBeep();

@@ -18,6 +18,7 @@ using namespace std;
     string mainDoorKey = "12345";
     string safeRoomKey = "Zombies";
     string safekey = "Brains";
+
     string burglarMasterKeyInput;
     string musicAnswer;
     string getBackIn;
@@ -27,57 +28,60 @@ using namespace std;
     string guestLeaveAnswer;
     string livingLeaveAnswer;
     string masterLeaveAnswer;
+    string MasterBurglarSure;
+
     string safeRoomKeyInput;
     string safeKeyInput;
     string safeCloseInput;
-    string MasterBurglarSure;
     string masterIntruderInputKey;
 
-    bool switchcorridorlight = 0;
-    bool switchMasterRoomLight = 0;
-    bool switchGuestRoomLight = 0;
-    bool switchLivingRoomLight = 0;
-    
-    bool switchmusic = 0;
     bool Master = 0;
     bool Guest = 0;
-    bool switchCurtain = 0;
-    bool switchTv = 0;
+
+    bool switchcorridorlight = 0;
+    ///////// Corridor Music Switch /////////
+    bool switchmusic = 0;
     int musicVolume = 67;
+
     int proteinIngredients = 3;
     int coffeeIngredients = 3;
     int smoothieIngredients = 3;
-    int livingLightIntensity = 7;
-    bool switchLivingRoomTv = 0;
-    int livingTvChannel = 05;
-    int livingTvVolume = 67;
-    int guestLightIntensity = 7;
-    bool switchGuestTv = 0;
-    int guestTvChannel = 10;
-    int guestTvVolume = 67;
-    bool switchGuestMusic = 0;
-    int guestMusicVolume = 67;
+
+    bool switchMasterRoomLight = 0;
     int masterLightIntensity = 7;
     bool switchMasterMusic = 0;
     int masterMusicVolume = 67;
     bool switchMastertv = 0;
     int masterTvChannel = 15;
     int masterTvVolume = 67;
-    int safeKeyTries = 0;
-    bool safeBurglarCheck = 0;
-    int safeRoomtries = 0;
-    bool MasterBurglarCheck = 0;
-    bool safeRoomLock = 1;
-    bool IfBurglar = 0;
-
-    bool livingRoomCurtains = 0;
-    bool guestCurtain = 0;
     bool masterCurtain = 0;
-
-    bool guestRoomLock = 0;
     bool masterRoomLock = 0;
-    
+    bool safeRoomLock = 1;
 
+    bool switchGuestRoomLight = 0;
+    int guestLightIntensity = 7;
+    bool switchGuestTv = 0;
+    int guestTvChannel = 10;
+    int guestTvVolume = 67;
+    bool switchGuestMusic = 0;
+    int guestMusicVolume = 67;
+    bool guestCurtain = 0;
+    bool guestRoomLock = 0;
+
+    bool switchLivingRoomLight = 0;
+    int livingLightIntensity = 7;
+    bool switchLivingRoomTv = 0;
+    int livingTvChannel = 05;
+    int livingTvVolume = 67;
+    bool livingRoomCurtains = 0;
+    
+    int safeKeyTries = 0;
+    int safeRoomtries = 0;
+
+    bool IfBurglar = 0;
+    bool MasterBurglarCheck = 0;
+    bool safeBurglarCheck = 0;
+    
 
 ////////////////// Beeps ///////////////////
 
@@ -335,6 +339,36 @@ of Safe Room.)" << endl;
     }
 }
 
+///////////////////////////// Leave Function ////////////////////////////
+inline void LeavingHouse()
+{
+    Master = 0;
+    Guest = 0;
+    switchcorridorlight = 0;
+    switchmusic = 0;
+    musicVolume = 67;
+    switchMasterRoomLight = 0;
+    masterLightIntensity = 7;
+    switchMasterMusic = 0;
+    masterMusicVolume = 67;
+    switchMastertv = 0;
+    masterCurtain = 0;
+    masterRoomLock = 0;
+    safeRoomLock = 1;
+    switchGuestRoomLight = 0;
+    guestLightIntensity = 7;
+    switchGuestTv = 0;
+    switchGuestMusic = 0;
+    guestMusicVolume = 67;
+    guestCurtain = 0;
+    guestRoomLock = 0;
+    switchLivingRoomLight = 0;
+    livingLightIntensity = 7;
+    switchLivingRoomTv = 0;
+    livingRoomCurtains = 0;
+    safeKeyTries = 0;
+    safeRoomtries = 0;
+}
 
 
 
@@ -427,7 +461,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
         goto mainDoorKeyInputAgain;
     }
 
-    //////////////////////////// Corridor //////////////////////////////
+    //========================================================================================//
+    //===================================== Corridor =========================================//
     switchcorridorlight = 1;
     cout << "(Main Door opens. Lights of corridor and Kitchen are turned on.)" << endl;
 
@@ -500,7 +535,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
     //////////////////// Corridor Switch ////////////////////////////
     switch (corridorOptionSelect)
     {
-    ///////////////////////////// Master Room //////////////////////////////
+    //========================================================================================//
+    //=================================== Master Room ========================================//
     case 1:
         if (masterRoomLock == 0)
         {
@@ -1278,6 +1314,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                         livingRoomCurtains = 0;
                         guestCurtain = 0;
                         masterCurtain = 0;
+                        cout << "(All doors are locked and all curtains are also closed)" << endl;
                         cout << "(Jarvis has called the Police and Police is comming)" << endl;
                         goto masterOption;
                     }
@@ -1303,12 +1340,12 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                     {
                         optionSelectYesBeep();
                         IfBurglar = 0;
-                        cout << "Burglar's Protocol Disabled." << endl;
                         for (int i = 0; i < 5; i++)
                         {
                             Beep(130, 250);
                             Beep (0, 100);
                         }
+                        cout << "Burglar's Protocol Disabled." << endl;
                         goto masterOption;
                     }
                     else if (MasterBurglarSure == "No" || MasterBurglarSure == "NO" || MasterBurglarSure == "no" || MasterBurglarSure == "n" || MasterBurglarSure == "N")
@@ -1338,6 +1375,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                     masterLightIntensity = 7;
                     switchMastertv = 0;
                     switchMasterMusic = 0;
+                    masterMusicVolume = 67;
                     masterCurtain = 0;
                     masterRoomLock = 0;
                     safeRoomLock = 1;
@@ -1348,6 +1386,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                 else if (masterLeaveAnswer == "No" || masterLeaveAnswer == "NO" || masterLeaveAnswer == "no" || masterLeaveAnswer == "N" || masterLeaveAnswer == "n")
                 {
                     noBeep();
+                    masterRoomLock = 0;
                     cout << "Okay.." << endl;
                     goto corridorOption;
                 }
@@ -1412,8 +1451,8 @@ then say Yes and if not then say No.)" << endl;
         
         
         
-
-    ////////////////////////////// Guest Room //////////////////////////////////////
+    //========================================================================================//
+    //==================================== Guest Room ========================================//
     case 2:
         if (guestRoomLock == 0)
         {
@@ -2032,7 +2071,6 @@ then say Yes and if not then say No.)" << endl;
                     switchGuestRoomLight = 0;
                     guestLightIntensity = 7;
                     switchGuestTv = 0;
-                    guestTvVolume = 67;
                     switchGuestMusic = 0;
                     guestMusicVolume = 67;
                     guestCurtain = 0;
@@ -2044,6 +2082,7 @@ then say Yes and if not then say No.)" << endl;
                 else if (guestLeaveAnswer == "No" || guestLeaveAnswer == "NO" || guestLeaveAnswer == "no" || guestLeaveAnswer == "N" || guestLeaveAnswer == "n")
                 {
                     noBeep();
+                    guestRoomLock = 0;
                     cout << "Okay.." << endl;
                     goto corridorOption;
                 }
@@ -2106,7 +2145,8 @@ then say Yes and if not then say No.)" << endl;
             }
         }
 
-    //////////////////////////// Living Room //////////////////////////
+    //========================================================================================//
+    //=================================== Living Room ========================================//
     case 3:
         optionSelectYesBeep();
         cout << endl;
@@ -2606,7 +2646,8 @@ then say Yes and if not then say No.)" << endl;
             goto livingOptionSelectAgain;
         }
 
-    /////////////////////// Kitchen ///////////////////////////
+    //========================================================================================//
+    //====================================== Kitchen =========================================//
     case 4:
         optionSelectYesBeep();
         ////////////////////////// Kitchen Options ////////////////////////
@@ -2743,7 +2784,8 @@ then say Yes and if not then say No.)" << endl;
             goto kitchenOptionSelectAgain;
         }
 
-    //////////////////////// Lights /////////////////////////////////
+    //========================================================================================//
+    //================================= Corridor Lights ======================================//
     case 5:
         //////////////////////// Lights option ////////////////////////
         optionSelectYesBeep();
@@ -2829,7 +2871,8 @@ then say Yes and if not then say No.)" << endl;
             goto lightsOptionSelectAgain;
         }
 
-    //////////////////////// Music //////////////////////////////////
+    //========================================================================================//
+    //=================================== Corridor Music =====================================//
     case 6:
         optionSelectYesBeep();
         //////////////////////// Music Options /////////////////////////
@@ -2935,7 +2978,8 @@ then say Yes and if not then say No.)" << endl;
             goto musicOptionAgain;
         }
 
-    //////////////////// Go Out of the House ////////////////////////
+    //========================================================================================//
+    //============================= Going out of the house ===================================//
     case 7:
         optionSelectYesBeep();
         /////////////////////////// both in house ///////////////////////////
@@ -3173,7 +3217,8 @@ then say Yes and if not then say No.)" << endl;
             }
         }
 
-    //////////////////// Leave House /////////////////////////////
+    //========================================================================================//
+    //=================================== Leaving House ======================================//
     case 8:
         optionSelectYesBeep();
         ////////////////////////// Both in house /////////////////////////
@@ -3198,15 +3243,7 @@ then say Yes and if not then say No.)" << endl;
             /////////////////////////// Both leaving ///////////////////////////////                
             case 1:
                 optionSelectYesBeep();
-                switchMasterRoomLight = 0;
-                switchcorridorlight = 0;
-                switchCurtain = 0;
-                switchmusic = 0;
-                switchTv = 0;
-                switchGuestRoomLight = 0;
-                switchLivingRoomLight = 0;
-                Master = 0;
-                Guest = 0;
+                LeavingHouse();
                 cout << "(All electrical appliances (lights, music player, etc) are turned off.)" << endl;
                 cout << "(Curtains are also closed)" << endl;
                 cout << "Bye Everyone.. Take care of yourselves." << endl;
@@ -3244,14 +3281,7 @@ then say Yes and if not then say No.)" << endl;
         ////////////////////////// Master only ///////////////////////////
         else if (Master == 1 && Guest == 0)
         {
-            switchMasterRoomLight = 0;
-            switchcorridorlight = 0;
-            switchCurtain = 0;
-            switchmusic = 0;
-            switchTv = 0;
-            switchGuestRoomLight = 0;
-            switchLivingRoomLight = 0;
-            Master = 0;
+            LeavingHouse();
             cout << "(All electrical appliances (lights, music player, etc) are turned off.)" << endl;
             cout << "(Curtains are also closed)" << endl;
             cout << "Bye Master.. See you soon." << endl;
@@ -3260,14 +3290,7 @@ then say Yes and if not then say No.)" << endl;
         //////////////////////// Guest only ////////////////////////////
         else if (Master == 0 && Guest == 1)
         {
-            switchMasterRoomLight = 0;
-            switchcorridorlight = 0;
-            switchCurtain = 0;
-            switchmusic = 0;
-            switchTv = 0;
-            switchGuestRoomLight = 0;
-            switchLivingRoomLight = 0;
-            Guest == 0;
+            LeavingHouse();
             cout << "(All electrical appliances (lights, music player, etc) are turned off.)" << endl;
             cout << "(Curtains are also closed)" << endl;
             cout << "Good Bye Sir.. Take care of yourself..!" << endl;

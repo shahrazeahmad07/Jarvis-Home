@@ -15,6 +15,7 @@ string MasterKey = "74588";
 string mainDoorKey = "12345";
 string safeRoomKey = "Zombies";
 string safekey = "Brains";
+string emergencyKey = "IamMaster";
 
 string burglarMasterKeyInput;
 string musicAnswer;
@@ -32,10 +33,10 @@ string safeKeyInput;
 string safeCloseInput;
 string masterIntruderInputKey;
 
-bool Master = 0;
+bool Master = 1;
 bool Guest = 0;
 
-bool switchcorridorlight = 0;
+bool switchcorridorlight = 1;
 ///////// Corridor Music Switch /////////
 bool switchmusic = 0;
 int musicVolume = 67;
@@ -44,7 +45,7 @@ int proteinIngredients = 3;
 int coffeeIngredients = 3;
 int smoothieIngredients = 3;
 
-bool switchMasterRoomLight = 0;
+bool switchMasterRoomLight = 1;
 int masterLightIntensity = 7;
 bool switchMasterMusic = 0;
 int masterMusicVolume = 67;
@@ -52,7 +53,7 @@ bool switchMastertv = 0;
 int masterTvChannel = 15;
 int masterTvVolume = 67;
 bool masterCurtain = 0;
-bool masterRoomLock = 0;
+bool masterRoomLock = 1;
 bool safeRoomLock = 1;
 
 bool switchGuestRoomLight = 0;
@@ -447,9 +448,18 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
     //========================================================================================//
     //===================================== Corridor =========================================//
-    switchcorridorlight = 1;
-    cout << "(Main Door opens. Lights of corridor and Kitchen are turned on.)" << endl;
+    cout << "(Main Door opens)" << endl;
 
+    if (switchcorridorlight == 0)
+    {
+        cout << "(the lights of the corridor and kitchen turns on)" << endl;
+        switchcorridorlight = 1;
+    }
+    else
+    {
+        cout << "(the Lights of corridor and Kitchen are already on)" << endl;
+    }
+    
 Corridor:
     if (Master == 1)
     {
@@ -1449,48 +1459,9 @@ corridorOptionSelectAgain:
         }
         else
         {
-            optionSelectYesBeep();
-            if (IfBurglar == 0 && MasterBurglarCheck == 0 && safeBurglarCheck == 0)
-            {
-                cout << "The master room is locked. Knock the Door and ask to open the door from the person in the Master room." << endl;
-            }
-            cout << "(The Master room door can be unlocked using master key only, in case of emergency. If you have master key and want to open the door\n\
-then say Yes and if not then say No.)"
-                 << endl;
-            string masterIntruderAnswer;
-        masterIntruderAnswerAgain:
-            getline (cin, masterIntruderAnswer);
-            if (masterIntruderAnswer == "Yes" || masterIntruderAnswer == "YES" || masterIntruderAnswer == "yes" || masterIntruderAnswer == "Y" || masterIntruderAnswer == "y")
-            {
-                optionSelectYesBeep();
-                cout << "Enter key: ";
-                getline (cin, masterIntruderInputKey);
-                if (masterIntruderInputKey == MasterKey)
-                {
-                    correctBeep();
-                    masterRoomLock = 0;
-                    cout << "Key Accepted." << endl;
-                    goto masterOption;
-                }
-                else
-                {
-                    wrongBeep();
-                    cout << "Wrong Key. Access denied." << endl;
-                    goto corridorOption;
-                }
-            }
-            else if (masterIntruderAnswer == "No" || masterIntruderAnswer == "NO" || masterIntruderAnswer == "no" || masterIntruderAnswer == "N" || masterIntruderAnswer == "n")
-            {
-                noBeep();
-                cout << "Okay" << endl;
-                goto corridorOption;
-            }
-            else
-            {
-                wrongBeep();
-                cout << "I dont Understand you. Please Answer Again: ";
-                goto masterIntruderAnswerAgain;
-            }
+            wrongBeep();
+            cout << "The master room is locked. Knock the Door and ask to open the door from the person in the Master room." << endl;
+            goto corridorOption;
         }
 
     //========================================================================================//
@@ -2192,48 +2163,9 @@ then say Yes and if not then say No.)"
         }
         else
         {
-            optionSelectYesBeep();
-            if (IfBurglar == 0 && MasterBurglarCheck == 0 && safeBurglarCheck == 0)
-            {
-                cout << "The guest room is locked. Knock the Door and ask to open the door from the person in the guest room." << endl;
-            }
-            cout << "(The guest room door can be unlocked using master key only, in case of emergency. If you have master key and want to open the door\n\
-then say Yes and if not then say No.)"
-                 << endl;
-            string guestIntruderAnswer;
-        guestIntruderAnswerAgain:
-            getline (cin, guestIntruderAnswer);
-            if (guestIntruderAnswer == "Yes" || guestIntruderAnswer == "YES" || guestIntruderAnswer == "yes" || guestIntruderAnswer == "Y" || guestIntruderAnswer == "y")
-            {
-                optionSelectYesBeep();
-                cout << "Enter key: ";
-                getline (cin, guestIntruderInputKey);
-                if (guestIntruderInputKey == MasterKey)
-                {
-                    correctBeep();
-                    guestRoomLock = 0;
-                    cout << "Key Accepted." << endl;
-                    goto guestOption;
-                }
-                else
-                {
-                    wrongBeep();
-                    cout << "Wrong Key. Access denied." << endl;
-                    goto corridorOption;
-                }
-            }
-            else if (guestIntruderAnswer == "No" || guestIntruderAnswer == "NO" || guestIntruderAnswer == "no" || guestIntruderAnswer == "N" || guestIntruderAnswer == "n")
-            {
-                noBeep();
-                cout << "Okay" << endl;
-                goto corridorOption;
-            }
-            else
-            {
-                wrongBeep();
-                cout << "I dont Understand you. Please Answer Again: ";
-                goto guestIntruderAnswerAgain;
-            }
+            wrongBeep();
+            cout << "The guest room is locked. Knock the Door and ask to open the door from the person in the guest room." << endl;
+            goto corridorOption;
         }
 
     //========================================================================================//
@@ -3487,6 +3419,137 @@ then say Yes and if not then say No.)"
 
         exit(0);
 
+    //////////////////////////////// master in case of emergency //////////////////////////////
+    case 1998:
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        if (masterRoomLock == 0)
+        {
+            wrongBeep();
+            cout << "The Master Room Door is already open." << endl;
+            cout << "(The door opens)" << endl;
+            goto guestOption;
+        }
+        else if (masterRoomLock == 1)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Beep(400, 250);
+                Beep(0, 100);
+            }
+            cout << "(Hidden Master Room Door Unlock Portal opens)"
+                 << endl;
+            cout << "You need an Emergency Key to open the Master Room Door. If you have emergency key and want to \n\
+enter the Master Room then say Yes. Otherwise say No." << endl;
+            string masterIntruderAnswer;
+        masterIntruderAnswerAgain:
+            getline (cin, masterIntruderAnswer);
+            if (masterIntruderAnswer == "Yes" || masterIntruderAnswer == "YES" || masterIntruderAnswer == "yes" || masterIntruderAnswer == "Y" || masterIntruderAnswer == "y")
+            {
+                optionSelectYesBeep();
+                cout << "Enter key: ";
+                getline (cin, masterIntruderInputKey);
+                if (masterIntruderInputKey == emergencyKey)
+                {
+                    correctBeep();
+                    masterRoomLock = 0;
+                    cout << "Key Accepted." << endl;
+                    goto masterOption;
+                }
+                else
+                {
+                    wrongBeep();
+                    cout << "Wrong Key. Access denied." << endl;
+                    cout << "(Hidden Guest Room Door Unlock Portal closes)";
+                    goto corridorOption;
+                }
+            }
+            else if (masterIntruderAnswer == "No" || masterIntruderAnswer == "NO" || masterIntruderAnswer == "no" || masterIntruderAnswer == "N" || masterIntruderAnswer == "n")
+            {
+                noBeep();
+                cout << "Okay" << endl;
+                for (int i = 0; i < 5; i++)
+                {
+                    Beep(130, 250);
+                    Beep(0, 100);
+                }
+                cout << "(Hidden Guest Room Door Unlock Portal closes)";
+                goto corridorOption;
+            }
+            else
+            {
+                wrongBeep();
+                cout << "I dont Understand you. Please Answer Again: ";
+                goto masterIntruderAnswerAgain;
+            }
+        }
+
+
+    //////////////////////////////// Guest in case of emergency //////////////////////////////
+    case 1987:
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        if (guestRoomLock == 0)
+        {
+            wrongBeep();
+            cout << "The Guest Room Door is already open." << endl;
+            cout << "(The door opens)" << endl;
+            goto guestOption;
+        }
+        else if (guestRoomLock == 1)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Beep(400, 250);
+                Beep(0, 100);
+            }
+            cout << "(Hidden Guest Room Door Unlock Portal opens)"
+                 << endl;
+            cout << "You need an Emergency Key to open the Guest Room Door. If you have emergency key and want to \n\
+enter the Guest Room then say Yes. Otherwise say No." << endl;
+            string guestIntruderAnswer;
+        guestIntruderAnswerAgain:
+            getline (cin, guestIntruderAnswer);
+            if (guestIntruderAnswer == "Yes" || guestIntruderAnswer == "YES" || guestIntruderAnswer == "yes" || guestIntruderAnswer == "Y" || guestIntruderAnswer == "y")
+            {
+                optionSelectYesBeep();
+                cout << "Enter key: ";
+                getline (cin, guestIntruderInputKey);
+                if (guestIntruderInputKey == emergencyKey)
+                {
+                    correctBeep();
+                    guestRoomLock = 0;
+                    cout << "Key Accepted." << endl;
+                    goto guestOption;
+                }
+                else
+                {
+                    wrongBeep();
+                    cout << "Wrong Key. Access Denied" << endl;
+                    cout << "(Hidden Guest Room Door Unlock Portal closes)";
+                    goto corridorOption;
+                }
+            }
+            else if (guestIntruderAnswer == "No" || guestIntruderAnswer == "NO" || guestIntruderAnswer == "no" || guestIntruderAnswer == "N" || guestIntruderAnswer == "n")
+            {
+                noBeep();
+                cout << "Okay" << endl;
+                for (int i = 0; i < 5; i++)
+                {
+                    Beep(130, 250);
+                    Beep(0, 100);
+                }
+                cout << "(Hidden Guest Room Door Unlock Portal closes)";
+                goto corridorOption;
+            }
+            else
+            {
+                wrongBeep();
+                cout << "I dont Understand you. Please Answer Again: ";
+                goto guestIntruderAnswerAgain;
+            }
+        }
+        
     ////////////////////// Corridor Invalid Option ///////////////////////
     default:
         wrongBeep();

@@ -911,8 +911,9 @@ corridorOptionSelectAgain:
                 //////////////////////// Master Music Options /////////////////////////
                 cout << "   1) Turn Music On" << endl;
                 cout << "   2) Turn Music Off" << endl;
-                cout << "   3) Music Volume" << endl;
-                cout << "   4) Cancel" << endl;
+                cout << "   3) Choose Genre" << endl;
+                cout << "   4) Music Volume" << endl;
+                cout << "   5) Cancel" << endl;
 
                 /////////////////////// Master Music Input ////////////////////////////
                 int masterMusicOption;
@@ -1014,8 +1015,32 @@ corridorOptionSelectAgain:
                         }
                     }
 
-                /////////////////////// Music Volume //////////////////////
+
+                ////////////////////// Choose Genre /////////////////////////
                 case 3:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    if (switchMasterMusic == 0)
+                    {
+                        wrongBeep();
+                        cout << "Music is off right now." << endl;
+                        goto masterOption;
+                    }
+                    else
+                    {
+                        optionSelectYesBeep();
+                        cout << "What would you like to listen?" << endl;
+                        string musicTrackAnswer;
+                        getline (cin, musicTrackAnswer);
+                        optionSelectYesBeep();
+                        cout << "Playing " << musicTrackAnswer << "..." << endl;
+                        goto masterOption;
+                    }
+
+
+
+                /////////////////////// Music Volume //////////////////////
+                case 4:
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchMasterMusic == 1)
@@ -1053,7 +1078,7 @@ corridorOptionSelectAgain:
                     }
 
                 /////////////////////// Cancel //////////////////////
-                case 4:
+                case 5:
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     noBeep();
@@ -1844,8 +1869,9 @@ corridorOptionSelectAgain:
                 //////////////////////// Guest Music Options /////////////////////////
                 cout << "   1) Turn Music On" << endl;
                 cout << "   2) Turn Music Off" << endl;
-                cout << "   3) Music Volume" << endl;
-                cout << "   4) Cancel" << endl;
+                cout << "   3) Choose Genre" << endl;
+                cout << "   4) Music Volume" << endl;
+                cout << "   5) Cancel" << endl;
 
                 /////////////////////// Guest Music Input ////////////////////////////
                 int guestMusicOption;
@@ -1947,8 +1973,31 @@ corridorOptionSelectAgain:
                         }
                     }
 
-                //////////////////////// Music Volume //////////////////////
+                ////////////////////// Choose Genre /////////////////////////
                 case 3:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    if (switchGuestMusic == 0)
+                    {
+                        wrongBeep();
+                        cout << "Music is off right now." << endl;
+                        goto guestOption;
+                    }
+                    else
+                    {
+                        optionSelectYesBeep();
+                        cout << "What would you like to listen?" << endl;
+                        string musicTrackAnswer;
+                        getline (cin, musicTrackAnswer);
+                        optionSelectYesBeep();
+                        cout << "Playing " << musicTrackAnswer << "..." << endl;
+                        goto guestOption;
+                    }
+
+
+
+                //////////////////////// Music Volume //////////////////////
+                case 4:
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchGuestMusic == 1)
@@ -1986,7 +2035,7 @@ corridorOptionSelectAgain:
                     }
 
                 //////////////////////// Cancel ////////////////////////////
-                case 4:
+                case 5:
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     noBeep();
@@ -2502,8 +2551,9 @@ corridorOptionSelectAgain:
             //////////////////////// Music Options /////////////////////////
             cout << "   1) Turn Music On" << endl;
             cout << "   2) Turn Music Off" << endl;
-            cout << "   3) Music Volume" << endl;
-            cout << "   4) Cancel" << endl;
+            cout << "   3) Choose Genre" << endl;
+            cout << "   4) Music Volume" << endl;
+            cout << "   5) Cancel" << endl;
             /////////////////////// Music Input ////////////////////////////
             int musicOption;
         livingmusicOptionAgain:
@@ -2554,8 +2604,31 @@ corridorOptionSelectAgain:
                     goto livingOption;
                 }
 
-            //////////////////////// Music Volume /////////////////////////
+
+            ////////////////////// Choose Genre /////////////////////////
             case 3:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                if (switchmusic == 0)
+                {
+                    wrongBeep();
+                    cout << "Music is off right now." << endl;
+                    goto livingOption;
+                }
+                else
+                {
+                    optionSelectYesBeep();
+                    cout << "What would you like to listen?" << endl;
+                    string musicTrackAnswer;
+                    getline (cin, musicTrackAnswer);
+                    optionSelectYesBeep();
+                    cout << "Playing " << musicTrackAnswer << "..." << endl;
+                    goto livingOption;
+                }
+
+
+            //////////////////////// Music Volume /////////////////////////
+            case 4:
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 if (switchmusic == 1)
@@ -2595,7 +2668,7 @@ corridorOptionSelectAgain:
                 }
 
             ///////////////////////// Cancel //////////////////////////////
-            case 4:
+            case 5:
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 noBeep();

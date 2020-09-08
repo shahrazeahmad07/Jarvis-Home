@@ -4,93 +4,89 @@
 #include <iomanip>
 #include <windows.h>
 
-
 using namespace std;
-
 
 /// ========================================================================== ///
 
 //////////////////////////////// Before Main ///////////////////////////////////
 
-
 ///////////// Global Variables ///////////
-    string MasterKey = "74588";
-    string mainDoorKey = "12345";
-    string safeRoomKey = "Zombies";
-    string safekey = "Brains";
+string MasterKey = "74588";
+string mainDoorKey = "12345";
+string safeRoomKey = "Zombies";
+string safekey = "Brains";
 
-    string burglarMasterKeyInput;
-    string musicAnswer;
-    string getBackIn;
-    string recipieAnswer;
-    string livingCurtainAnswer;
-    string guestIntruderInputKey;
-    string guestLeaveAnswer;
-    string livingLeaveAnswer;
-    string masterLeaveAnswer;
-    string MasterBurglarSure;
+string burglarMasterKeyInput;
+string musicAnswer;
+string getBackIn;
+string recipieAnswer;
+string livingCurtainAnswer;
+string guestIntruderInputKey;
+string guestLeaveAnswer;
+string livingLeaveAnswer;
+string masterLeaveAnswer;
+string MasterBurglarSure;
 
-    string safeRoomKeyInput;
-    string safeKeyInput;
-    string safeCloseInput;
-    string masterIntruderInputKey;
+string safeRoomKeyInput;
+string safeKeyInput;
+string safeCloseInput;
+string masterIntruderInputKey;
 
-    bool Master = 0;
-    bool Guest = 0;
+bool Master = 0;
+bool Guest = 0;
 
-    bool switchcorridorlight = 0;
-    ///////// Corridor Music Switch /////////
-    bool switchmusic = 0;
-    int musicVolume = 67;
+bool switchcorridorlight = 0;
+///////// Corridor Music Switch /////////
+bool switchmusic = 0;
+int musicVolume = 67;
 
-    int proteinIngredients = 3;
-    int coffeeIngredients = 3;
-    int smoothieIngredients = 3;
+int proteinIngredients = 3;
+int coffeeIngredients = 3;
+int smoothieIngredients = 3;
 
-    bool switchMasterRoomLight = 0;
-    int masterLightIntensity = 7;
-    bool switchMasterMusic = 0;
-    int masterMusicVolume = 67;
-    bool switchMastertv = 0;
-    int masterTvChannel = 15;
-    int masterTvVolume = 67;
-    bool masterCurtain = 0;
-    bool masterRoomLock = 0;
-    bool safeRoomLock = 1;
+bool switchMasterRoomLight = 0;
+int masterLightIntensity = 7;
+bool switchMasterMusic = 0;
+int masterMusicVolume = 67;
+bool switchMastertv = 0;
+int masterTvChannel = 15;
+int masterTvVolume = 67;
+bool masterCurtain = 0;
+bool masterRoomLock = 0;
+bool safeRoomLock = 1;
 
-    bool switchGuestRoomLight = 0;
-    int guestLightIntensity = 7;
-    bool switchGuestTv = 0;
-    int guestTvChannel = 10;
-    int guestTvVolume = 67;
-    bool switchGuestMusic = 0;
-    int guestMusicVolume = 67;
-    bool guestCurtain = 0;
-    bool guestRoomLock = 0;
+bool switchGuestRoomLight = 0;
+int guestLightIntensity = 7;
+bool switchGuestTv = 0;
+int guestTvChannel = 10;
+int guestTvVolume = 67;
+bool switchGuestMusic = 0;
+int guestMusicVolume = 67;
+bool guestCurtain = 0;
+bool guestRoomLock = 0;
 
-    bool switchLivingRoomLight = 0;
-    int livingLightIntensity = 7;
-    bool switchLivingRoomTv = 0;
-    int livingTvChannel = 05;
-    int livingTvVolume = 67;
-    bool livingRoomCurtains = 0;
-    
-    int safeKeyTries = 0;
-    int safeRoomtries = 0;
+bool switchLivingRoomLight = 0;
+int livingLightIntensity = 7;
+bool switchLivingRoomTv = 0;
+int livingTvChannel = 05;
+int livingTvVolume = 67;
+bool livingRoomCurtains = 0;
 
-    bool IfBurglar = 0;
-    bool MasterBurglarCheck = 0;
-    bool safeBurglarCheck = 0;
-    
+int safeKeyTries = 0;
+int safeRoomtries = 0;
+
+bool IfBurglar = 0;
+bool MasterBurglarCheck = 0;
+bool safeBurglarCheck = 0;
 
 ////////////////// Beeps ///////////////////
 
 inline void wrongBeep()
 {
     for (int i = 0; i < 3; i++)
-        {
-            Beep(200, 100);
-        }
+    {
+        Beep(200, 100);
+    }
 }
 
 inline void correctBeep()
@@ -109,9 +105,6 @@ inline void noBeep()
     Beep(130, 150);
 }
 
-
-
-
 ///////////////// Main Door Burglar's Protocol /////////////////////////////
 void mainDoorBurglarProtocol()
 {
@@ -124,30 +117,30 @@ void mainDoorBurglarProtocol()
     cout << "(Jarvis has called Master and Police)" << endl;
     cout << "(Police is comming)" << endl;
     cout << "(Burglar's Protocol can be deactivated with Master key only)" << endl;
-    burglarMasterKeyInputAgain:
-    getline (cin, burglarMasterKeyInput);
+burglarMasterKeyInputAgain:
+    getline(cin, burglarMasterKeyInput);
     if (burglarMasterKeyInput != MasterKey)
     {
         cout << "Wrong key." << endl;
         goto burglarMasterKeyInputAgain;
     }
-    
+
     else
     {
         correctBeep();
         Master = 1;
         cout << "Key Accepted. Burglar's Protocol is disabled." << endl;
         cout << "(The house is unsealed and the main door opens. Lights of corridor and kitchen are\n\
- turned on. Some basic lights of the house are also turned on.)" << endl;
+ turned on. Some basic lights of the house are also turned on.)"
+             << endl;
         switchcorridorlight = 1;
         cout << "Master someone tried to broke into your house and I have initiated Burglar's Protocol" << endl;
         cout << "Your house is in safe Hands. You don't need to worry." << endl;
         cout << "I have also called Police at that time. You can now ask the police about the\n\
  situation." << endl;
-        cout << "Get Relax. Everything is safe." << endl;        
+        cout << "Get Relax. Everything is safe." << endl;
     }
 }
-
 
 //////////////////////////////// Guest Check /////////////////////////////////////
 void guestCheck()
@@ -156,8 +149,8 @@ void guestCheck()
     {
         cout << "Is Someone else with you?" << endl;
         string someoneAnswer;
-        someoneAnswerAgain:
-        getline (cin, someoneAnswer);
+    someoneAnswerAgain:
+        getline(cin, someoneAnswer);
         if (someoneAnswer == "Yes" || someoneAnswer == "YES" || someoneAnswer == "yes" || someoneAnswer == "y" || someoneAnswer == "Y")
         {
             optionSelectYesBeep();
@@ -178,7 +171,6 @@ void guestCheck()
     }
 }
 
-
 ////////////////////////////////////// Music Check ////////////////////////////////
 void musicCheck()
 {
@@ -187,7 +179,6 @@ void musicCheck()
         cout << "(Music is playing in the background)" << endl;
     }
 }
-
 
 /////////////////////////////////////// Living room Curtains check /////////////////////////
 void livingCurtainCheck()
@@ -202,7 +193,6 @@ void livingCurtainCheck()
     }
 }
 
-
 //////////////////////////////////// Living Room Tv Check ///////////////////////
 void livingTvCheck()
 {
@@ -211,7 +201,6 @@ void livingTvCheck()
         cout << "(Tv is on and current channel is " << livingTvChannel << " and volume is " << livingTvVolume << ")" << endl;
     }
 }
-
 
 //////////////////////////////////// Guest Room Curtains Check ///////////////////////
 void guestCurtainCheck()
@@ -242,9 +231,7 @@ void GuestMusicCheck()
     {
         cout << "(Music is Playing in the background and music volume is " << guestMusicVolume << ")" << endl;
     }
-    
 }
-
 
 /////////////////////////////////// Guest Room Lock Check ////////////////////////////////
 void guestLockCheck()
@@ -259,7 +246,6 @@ void guestLockCheck()
     }
 }
 
-
 /////////////////////////////////// Master Tv Check ////////////////////////////////
 void masterTvCheck()
 {
@@ -269,16 +255,14 @@ void masterTvCheck()
     }
 }
 
-
 //////////////////////////////////////// Master Music Check /////////////////////////////
 void MasterMusicCheck()
 {
     if (switchMasterMusic == 1)
     {
         cout << "(Music is Playing in the background and music volume is " << masterMusicVolume << ")" << endl;
-    }    
+    }
 }
-
 
 ////////////////////////////////////// Master Curtain Check /////////////////////////////
 void masterCurtainCheck()
@@ -293,7 +277,6 @@ void masterCurtainCheck()
     }
 }
 
-
 ////////////////////////////// Master Room Lock Check /////////////////////////////
 void masterLockCheck()
 {
@@ -307,11 +290,10 @@ void masterLockCheck()
     }
 }
 
-
 //////////////////////// Burglar's Protocol Check ////////////////////////
 void masterBurglarProtocolCheck()
 {
-    if(IfBurglar == 1)
+    if (IfBurglar == 1)
     {
         cout << "(Burglar's Protocol is Enabled)" << endl;
     }
@@ -320,22 +302,24 @@ void masterBurglarProtocolCheck()
 //////////////////////// Master Room Burglar Check ////////////////////////
 void MasterRoomBurglarCheck()
 {
-    if(MasterBurglarCheck == 1)
+    if (MasterBurglarCheck == 1)
     {
         cout << "(There is a Burglar in the Master Room trying to enter Safe room. But Jarvis has Locked him in.\n\
 You should call the police and deal with the Burglar in the Master Room. He cannot Escape untill you open the door \n\
-of Master Room.)" << endl;
+of Master Room.)"
+             << endl;
     }
 }
 
 //////////////////////// Safe Room Burglar Check ////////////////////////
 void safeRoomBurglarCheck()
 {
-    if(safeBurglarCheck == 1)
+    if (safeBurglarCheck == 1)
     {
         cout << "(There is a Burglar in the Safe Room trying to Open safe. But Jarvis has Locked him in.\n\
 You should call the police and deal with the Burglar in the Safe Room. He cannot Escape untill you open the door \n\
-of Safe Room.)" << endl;
+of Safe Room.)"
+             << endl;
     }
 }
 
@@ -370,16 +354,12 @@ inline void LeavingHouse()
     safeRoomtries = 0;
 }
 
-
-
-
 /// =============================================================================== ///
 /// =============================================================================== ///
-
 
 main()
 {
-    
+
     ///////////// Opening statement //////////////
     cout << setw(50) << "Jarvis Home" << endl;
     cout << setw(53) << "A Smart Home Agent" << endl;
@@ -393,15 +373,15 @@ which is accessed by master key only. The temperature of the house is fully main
 automatic temperature controller. The house has some more features related to different\n\
 appliances of the house. The Jarvis(AI Assistant) take care of different things of house\n\
 automatically. The house is fitted with proximity sensors and detect that if a person is present in the room or not and\n\
-if Jarvis detects that no one is in a certain place and the appliances are on, She will turn them off automatically)" << endl;
-
+if Jarvis detects that no one is in a certain place and the appliances are on, She will turn them off automatically)"
+         << endl;
 
     ///////////////////////////// Main Door //////////////////////////////
     cout << setw(40) << "(Main Door) ";
     cout << "Enter key to open: ";
     string mainDoorKeyInput;
     int mainDoorKeyTries = 0;
-    mainDoorKeyInputAgain:
+mainDoorKeyInputAgain:
     getline(cin, mainDoorKeyInput);
     if (mainDoorKeyInput == MasterKey)
     {
@@ -417,12 +397,14 @@ if Jarvis detects that no one is in a certain place and the appliances are on, S
         if (MasterBurglarCheck == 1)
         {
             cout << "There is a Burglar in the Master Room who tried to open the Safe Room, but I have Locked him\n\
-in the Master Room. I would recommend you to call the Police and get help from them.." << endl;
+in the Master Room. I would recommend you to call the Police and get help from them.."
+                 << endl;
         }
         if (safeBurglarCheck == 1)
         {
             cout << "There is a Burglar in the Safe Room who tried to open the Safe, but I have Locked him\n\
-in the Safe Room. I would recommend you to call the Police and get help from them.." << endl;
+in the Safe Room. I would recommend you to call the Police and get help from them.."
+                 << endl;
         }
     }
     else if (mainDoorKeyInput == mainDoorKey)
@@ -439,12 +421,14 @@ in the Safe Room. I would recommend you to call the Police and get help from the
         if (MasterBurglarCheck == 1)
         {
             cout << "There is a Burglar in the Master Room who tried to open the Safe Room, but I have Locked him\n\
-in the Master Room. I would recommend you to call the Police and get help from them.." << endl;
+in the Master Room. I would recommend you to call the Police and get help from them.."
+                 << endl;
         }
         if (safeBurglarCheck == 1)
         {
             cout << "There is a Burglar in the Safe Room who tried to open the Safe, but I have Locked him\n\
-in the Safe Room. I would recommend you to call the Police and get help from them.." << endl;
+in the Safe Room. I would recommend you to call the Police and get help from them.."
+                 << endl;
         }
     }
     else
@@ -466,7 +450,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
     switchcorridorlight = 1;
     cout << "(Main Door opens. Lights of corridor and Kitchen are turned on.)" << endl;
 
-    Corridor:
+Corridor:
     if (Master == 1)
     {
         if (IfBurglar == 0 && MasterBurglarCheck == 0 && safeBurglarCheck == 0)
@@ -475,14 +459,15 @@ in the Safe Room. I would recommend you to call the Police and get help from the
             if (Guest == 0)
             {
                 cout << "Do you want me to turn on the music?" << endl;
-                musicAnswerAgain:
+            musicAnswerAgain:
                 getline(cin, musicAnswer);
                 if (musicAnswer == "Yes" || musicAnswer == "YES" || musicAnswer == "yes" || musicAnswer == "Y" || musicAnswer == "y")
                 {
                     optionSelectYesBeep();
                     cout << "Playing Music.." << endl;
                     switchmusic = 1;
-                    cout << "(music is playing now)" << endl << endl;
+                    cout << "(music is playing now)" << endl
+                         << endl;
                 }
                 else if (musicAnswer == "No" || musicAnswer == "NO" || musicAnswer == "no" || musicAnswer == "N" || musicAnswer == "n")
                 {
@@ -498,10 +483,9 @@ in the Safe Room. I would recommend you to call the Police and get help from the
             }
         }
     }
-    
 
-    //////////////////////// Corridor Options /////////////////////////
-    corridorOption:
+//////////////////////// Corridor Options /////////////////////////
+corridorOption:
     cout << endl;
     cout << "(You are in the corridor)" << endl;
     musicCheck();
@@ -522,7 +506,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
     //////////////////// Corridor Option Select //////////////////////
     int corridorOptionSelect;
-    corridorOptionSelectAgain:
+corridorOptionSelectAgain:
     while (!(cin >> corridorOptionSelect))
     {
         wrongBeep();
@@ -531,13 +515,14 @@ in the Safe Room. I would recommend you to call the Police and get help from the
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
-
     //////////////////// Corridor Switch ////////////////////////////
     switch (corridorOptionSelect)
     {
     //========================================================================================//
     //=================================== Master Room ========================================//
     case 1:
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (masterRoomLock == 0)
         {
             optionSelectYesBeep();
@@ -553,8 +538,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                 cout << "(Light of the room is already on)" << endl;
             }
 
-            ////////////////////////////// Master Room Option /////////////////////
-            masterOption:
+        ////////////////////////////// Master Room Option /////////////////////
+        masterOption:
             cout << endl;
             cout << "(You are in the Master room)" << endl;
             masterCurtainCheck();
@@ -578,7 +563,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
             ///////////////////////////// Master Room option Select //////////////////////
             int masterOptionSelect;
-            masterOptionSelectAgain:
+        masterOptionSelectAgain:
             while (!(cin >> masterOptionSelect))
             {
                 wrongBeep();
@@ -592,6 +577,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
             {
             /////////////////////////// Master Lights //////////////////////////////////
             case 1:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 cout << "   1) Turn on the lights" << endl;
                 cout << "   2) Turn off the lights" << endl;
@@ -600,7 +587,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 //////////////////// Master Lights Option Select //////////////////////////
                 int masterLightsOptionSelect;
-                masterLightsOptionSelectAgain:
+            masterLightsOptionSelectAgain:
                 while (!(cin >> masterLightsOptionSelect))
                 {
                     wrongBeep();
@@ -614,6 +601,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                 {
                 ////////////////////////// Turn on the light /////////////////////
                 case 1:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchMasterRoomLight == 1)
                     {
                         noBeep();
@@ -630,6 +619,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 ////////////////////////// Turn off the light ////////////////////
                 case 2:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchMasterRoomLight == 0)
                     {
                         noBeep();
@@ -647,6 +638,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 ///////////////////////// Light Intensity ///////////////////////
                 case 3:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchMasterRoomLight == 0)
                     {
                         noBeep();
@@ -659,7 +652,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                         cout << "Light Intensity is at " << masterLightIntensity << endl;
                         cout << endl;
                         cout << "Enter new Intensity (from 1 to 7)" << endl;
-                        MasterLightIntensityAgain:
+                    MasterLightIntensityAgain:
                         while (!(cin >> masterLightIntensity))
                         {
                             wrongBeep();
@@ -683,18 +676,22 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 ///////////////////////// Cancel ////////////////////////////
                 case 4:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     noBeep();
                     goto masterOption;
-                
+
                 ///////////////////////// Master light invalid option //////////////////
                 default:
                     wrongBeep();
                     cout << "Invalid Option. Select again: ";
                     goto masterLightsOptionSelectAgain;
                 }
-        
+
             /////////////////////////// Master Tv ///////////////////////////////
             case 2:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 cout << endl;
                 cout << "   1) Turn on TV" << endl;
@@ -706,8 +703,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 ////////////////////////// Master TV Option Select ////////////////////////
                 int masterTvOptionSelect;
-                masterTvOptionSelectAgain:
-                while(!(cin >> masterTvOptionSelect))
+            masterTvOptionSelectAgain:
+                while (!(cin >> masterTvOptionSelect))
                 {
                     wrongBeep();
                     cout << "Invalid Input. Enter Again: ";
@@ -720,6 +717,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                 {
                 ///////////////////////// Turn on Tv //////////////////////////
                 case 1:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchMasterMusic == 1)
                     {
                         if (switchMastertv == 1)
@@ -762,6 +761,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 ///////////////////////// Turn Off Tv //////////////////////////
                 case 2:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchMasterMusic == 1)
                     {
                         if (switchMastertv == 0)
@@ -806,6 +807,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 ///////////////////////// Change Tv Channel //////////////////////////
                 case 3:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchMastertv == 0)
                     {
                         noBeep();
@@ -817,8 +820,14 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                         optionSelectYesBeep();
                         cout << "Current channel is " << masterTvChannel << endl;
                         cout << "Which channel you want me to tune into? (1 to 100)" << endl;
-                        MasterTvChannelAgain:
-                        cin >> masterTvChannel;
+                    MasterTvChannelAgain:
+                        while(!(cin >> masterTvChannel))
+                        {
+                            wrongBeep();
+                            cout << "Must be a number. Enter Again: ";
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        }
                         if (masterTvChannel >= 1 && masterTvChannel <= 100)
                         {
                             optionSelectYesBeep();
@@ -835,6 +844,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 ///////////////////////// Change Volume //////////////////////////
                 case 4:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchMastertv == 0)
                     {
                         noBeep();
@@ -846,8 +857,14 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                         optionSelectYesBeep();
                         cout << "Current volume is " << masterTvVolume << endl;
                         cout << "Enter new Volume: (Min Volume = 1, Max Volume is 100, To Mute Enter 0)" << endl;
-                        masterTvVolumeAgain:
-                        cin >> masterTvVolume;
+                    masterTvVolumeAgain:
+                        while(!(cin >> masterTvVolume))
+                        {
+                            wrongBeep();
+                            cout << "Must be in numbers. Enter Again: ";
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        }
                         if (masterTvVolume >= 0 && masterTvVolume <= 100)
                         {
                             optionSelectYesBeep();
@@ -864,9 +881,11 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 ///////////////////////// Cancel //////////////////////////
                 case 5:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     noBeep();
                     goto masterOption;
-                
+
                 ///////////////////////// Master Tv Invalid ////////////////////
                 default:
                     wrongBeep();
@@ -876,6 +895,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
             /////////////////////////// Master Music /////////////////////////////
             case 3:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 //////////////////////// Master Music Options /////////////////////////
                 cout << "   1) Turn Music On" << endl;
@@ -885,7 +906,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 /////////////////////// Master Music Input ////////////////////////////
                 int masterMusicOption;
-                masterMusicOptionAgain:
+            masterMusicOptionAgain:
                 while (!(cin >> masterMusicOption))
                 {
                     wrongBeep();
@@ -899,6 +920,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                 {
                 /////////////////////// Turn on music //////////////////////
                 case 1:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchMastertv == 1)
                     {
                         if (switchMasterMusic == 1)
@@ -939,6 +962,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 /////////////////////// Turn off music //////////////////////
                 case 2:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchMastertv == 1)
                     {
                         if (switchMasterMusic == 0)
@@ -981,13 +1006,15 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 /////////////////////// Music Volume //////////////////////
                 case 3:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchMasterMusic == 1)
                     {
                         optionSelectYesBeep();
                         cout << endl;
                         cout << "Volume of Music is currently at " << masterMusicVolume << endl;
                         cout << "Enter new Volume (from 1 to 100)" << endl;
-                        MasterMusicVolumeAgain:
+                    MasterMusicVolumeAgain:
                         while (!(cin >> masterMusicVolume))
                         {
                             wrongBeep();
@@ -1017,9 +1044,11 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
                 /////////////////////// Cancel //////////////////////
                 case 4:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     noBeep();
                     goto masterOption;
-                
+
                 /////////////////////// Master Music Invalid //////////////////
                 default:
                     wrongBeep();
@@ -1029,14 +1058,16 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
             ///////////////////////////// Master Curtains /////////////////////////
             case 4:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 cout << endl;
                 if (masterCurtain == 0)
                 {
                     cout << "Do you want me to open curtains?" << endl;
                     string masterCurtainAnswer;
-                    masterCurtainAnswerAgain:
-                    cin >> masterCurtainAnswer;
+                masterCurtainAnswerAgain:
+                    getline (cin, masterCurtainAnswer);
                     if (masterCurtainAnswer == "Yes" || masterCurtainAnswer == "YES" || masterCurtainAnswer == "yes" || masterCurtainAnswer == "Y" || masterCurtainAnswer == "y")
                     {
                         optionSelectYesBeep();
@@ -1062,8 +1093,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                 {
                     cout << "Do you want me to close the curtains?" << endl;
                     string masterCurtainAnswer;
-                    masterCurtainOpenAnswerAgain:
-                    cin >> masterCurtainAnswer;
+                masterCurtainOpenAnswerAgain:
+                    getline (cin, masterCurtainAnswer);
                     if (masterCurtainAnswer == "Yes" || masterCurtainAnswer == "YES" || masterCurtainAnswer == "yes" || masterCurtainAnswer == "Y" || masterCurtainAnswer == "y")
                     {
                         optionSelectYesBeep();
@@ -1088,13 +1119,15 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
             ///////////////////////////// Master Room lock ////////////////////////
             case 5:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
-                if(masterRoomLock == 0)
+                if (masterRoomLock == 0)
                 {
                     cout << "Do You want me to Lock the room door?" << endl;
                     string masterLockAnswer;
-                    masterLockAnswerAgain:
-                    cin >> masterLockAnswer;
+                masterLockAnswerAgain:
+                    getline (cin, masterLockAnswer);
                     if (masterLockAnswer == "Yes" || masterLockAnswer == "YES" || masterLockAnswer == "yes" || masterLockAnswer == "Y" || masterLockAnswer == "y")
                     {
                         optionSelectYesBeep();
@@ -1119,8 +1152,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                 {
                     cout << "Do You want me to unlock the room door?" << endl;
                     string masterLockAnswer;
-                    masterUnlockAnswerAgain:
-                    cin >> masterLockAnswer;
+                masterUnlockAnswerAgain:
+                    getline (cin, masterLockAnswer);
                     if (masterLockAnswer == "Yes" || masterLockAnswer == "YES" || masterLockAnswer == "yes" || masterLockAnswer == "Y" || masterLockAnswer == "y")
                     {
                         optionSelectYesBeep();
@@ -1144,11 +1177,13 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
             ///////////////////////////// Master Safe Room ////////////////////////
             case 6:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 cout << endl;
                 cout << "Enter key to Enter: ";
-                safeRoomKeyInputAgain:
-                cin >> safeRoomKeyInput;
+            safeRoomKeyInputAgain:
+                getline (cin, safeRoomKeyInput);
                 if (safeRoomKeyInput == safeRoomKey)
                 {
                     ////////////////// Safe Room Options /////////////////
@@ -1157,14 +1192,14 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                     cout << "Key Accepted." << endl;
                     cout << "(The light of the safe room turns on)" << endl;
                     cout << "(The Door of safe room closes when you get into the safe room)" << endl;
-                    safeRoomOption:
+                safeRoomOption:
                     cout << endl;
                     cout << "   1) Use Safe" << endl;
                     cout << "   2) Return to Master Room" << endl;
                     cout << endl;
                     int safeRoomOptionSelect;
-                    safeRoomOptionSelectAgain:
-                    while(!(cin >> safeRoomOptionSelect))
+                safeRoomOptionSelectAgain:
+                    while (!(cin >> safeRoomOptionSelect))
                     {
                         cout << "Invalid Input. Enter Again: ";
                         cin.clear();
@@ -1176,17 +1211,19 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                     {
                     /////////////////////// Use Safe ////////////////////////
                     case 1:
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         optionSelectYesBeep();
                         cout << "Enter Safe Key: ";
-                        cin >> safeKeyInput;
+                        getline (cin, safeKeyInput);
                         if (safeKeyInput == safekey)
                         {
                             correctBeep();
                             safeKeyTries = 0;
                             cout << "Safe Opens" << endl;
                             cout << "Press 1 to lock the safe (When you finish your Business): ";
-                            safeCloseInputAgain:
-                            cin >> safeCloseInput;
+                        safeCloseInputAgain:
+                            getline (cin, safeCloseInput);
                             if (safeCloseInput == "1")
                             {
                                 optionSelectYesBeep();
@@ -1219,8 +1256,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                                 Beep(500, 10000);
                                 cout << "Enter Master key to disable burglar's Protocol: ";
                                 string safeBurglarDisable;
-                                safeBurglarDisableAgain:
-                                cin >> safeBurglarDisable;
+                            safeBurglarDisableAgain:
+                                getline (cin, safeBurglarDisable);
                                 if (safeBurglarDisable == MasterKey)
                                 {
                                     correctBeep();
@@ -1237,9 +1274,11 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                             }
                             goto safeRoomOption;
                         }
-                        
+
                     /////////////////////// Return to Master Room ///////////////////////
                     case 2:
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         optionSelectYesBeep();
                         cout << "(the Safe is Locked and the light turn off.)" << endl;
                         cout << "(The door of safe room gets locked when you returned back to Master Room)" << endl;
@@ -1271,8 +1310,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                         Beep(500, 10000);
                         cout << "Enter Master key to disable burglar's Protocol: ";
                         string safeRoomBurglarDisable;
-                        safeRoomBurglarDisableAgain:
-                        cin >> safeRoomBurglarDisable;
+                    safeRoomBurglarDisableAgain:
+                        getline (cin, safeRoomBurglarDisable);
                         if (safeRoomBurglarDisable == MasterKey)
                         {
                             correctBeep();
@@ -1292,12 +1331,14 @@ in the Safe Room. I would recommend you to call the Police and get help from the
 
             ///////////////////////////// Master Burglar's Protocol //////////////////////
             case 7:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 if (IfBurglar == 0)
                 {
                     cout << "Do you want me to enable Burglar's Protocol" << endl;
-                    MasterBurglarSureAgain:
-                    cin >> MasterBurglarSure;
+                MasterBurglarSureAgain:
+                    getline (cin, MasterBurglarSure);
                     if (MasterBurglarSure == "Yes" || MasterBurglarSure == "YES" || MasterBurglarSure == "yes" || MasterBurglarSure == "y" || MasterBurglarSure == "Y")
                     {
                         optionSelectYesBeep();
@@ -1306,7 +1347,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                         for (int i = 0; i < 5; i++)
                         {
                             Beep(400, 250);
-                            Beep (0, 100);
+                            Beep(0, 100);
                         }
                         masterRoomLock = 1;
                         guestRoomLock = 1;
@@ -1334,8 +1375,8 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                 else
                 {
                     cout << "Do you want me to Disable Burglar's Protocol" << endl;
-                    DisableMasterBurglarSureAgain:
-                    cin >> MasterBurglarSure;
+                DisableMasterBurglarSureAgain:
+                    getline (cin, MasterBurglarSure);
                     if (MasterBurglarSure == "Yes" || MasterBurglarSure == "YES" || MasterBurglarSure == "yes" || MasterBurglarSure == "y" || MasterBurglarSure == "Y")
                     {
                         optionSelectYesBeep();
@@ -1343,7 +1384,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                         for (int i = 0; i < 5; i++)
                         {
                             Beep(130, 250);
-                            Beep (0, 100);
+                            Beep(0, 100);
                         }
                         cout << "Burglar's Protocol Disabled." << endl;
                         goto masterOption;
@@ -1361,13 +1402,15 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                         goto DisableMasterBurglarSureAgain;
                     }
                 }
-                
+
             ///////////////////////////// Return to corridor /////////////////////////
             case 8:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 cout << "Do you want me to turn of all the appliances?" << endl;
-                masterLeaveAnswerAgain:
-                cin >> masterLeaveAnswer;
+            masterLeaveAnswerAgain:
+                getline (cin, masterLeaveAnswer);
                 if (masterLeaveAnswer == "Yes" || masterLeaveAnswer == "YES" || masterLeaveAnswer == "yes" || masterLeaveAnswer == "Y" || masterLeaveAnswer == "y")
                 {
                     optionSelectYesBeep();
@@ -1396,7 +1439,7 @@ in the Safe Room. I would recommend you to call the Police and get help from the
                     cout << "I Dont Understand you. Enter Again: ";
                     goto masterLeaveAnswerAgain;
                 }
-        
+
             //////////////////////////// Master Invalid Select ///////////////////////
             default:
                 wrongBeep();
@@ -1407,20 +1450,21 @@ in the Safe Room. I would recommend you to call the Police and get help from the
         else
         {
             optionSelectYesBeep();
-            if(IfBurglar == 0 && MasterBurglarCheck == 0 && safeBurglarCheck == 0)
+            if (IfBurglar == 0 && MasterBurglarCheck == 0 && safeBurglarCheck == 0)
             {
                 cout << "The master room is locked. Knock the Door and ask to open the door from the person in the Master room." << endl;
             }
             cout << "(The Master room door can be unlocked using master key only, in case of emergency. If you have master key and want to open the door\n\
-then say Yes and if not then say No.)" << endl;
+then say Yes and if not then say No.)"
+                 << endl;
             string masterIntruderAnswer;
-            masterIntruderAnswerAgain:
-            cin >> masterIntruderAnswer;
+        masterIntruderAnswerAgain:
+            getline (cin, masterIntruderAnswer);
             if (masterIntruderAnswer == "Yes" || masterIntruderAnswer == "YES" || masterIntruderAnswer == "yes" || masterIntruderAnswer == "Y" || masterIntruderAnswer == "y")
             {
                 optionSelectYesBeep();
                 cout << "Enter key: ";
-                cin >> masterIntruderInputKey;
+                getline (cin, masterIntruderInputKey);
                 if (masterIntruderInputKey == MasterKey)
                 {
                     correctBeep();
@@ -1448,12 +1492,12 @@ then say Yes and if not then say No.)" << endl;
                 goto masterIntruderAnswerAgain;
             }
         }
-        
-        
-        
+
     //========================================================================================//
     //==================================== Guest Room ========================================//
     case 2:
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (guestRoomLock == 0)
         {
             optionSelectYesBeep();
@@ -1469,8 +1513,8 @@ then say Yes and if not then say No.)" << endl;
                 cout << "(Light of the room is already on)" << endl;
             }
 
-            ////////////////////////////// Guest Room Option /////////////////////
-            guestOption:
+        ////////////////////////////// Guest Room Option /////////////////////
+        guestOption:
             cout << endl;
             cout << "(You are in the Guest room)" << endl;
             guestCurtainCheck();
@@ -1492,7 +1536,7 @@ then say Yes and if not then say No.)" << endl;
 
             ///////////////////////////// Guest Room option Select //////////////////////
             int guestOptionSelect;
-            guestOptionSelectAgain:
+        guestOptionSelectAgain:
             while (!(cin >> guestOptionSelect))
             {
                 wrongBeep();
@@ -1506,6 +1550,8 @@ then say Yes and if not then say No.)" << endl;
             {
             ///////////////////////////// Guest Lights ///////////////////////////
             case 1:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 cout << "   1) Turn on the lights" << endl;
                 cout << "   2) Turn off the lights" << endl;
@@ -1514,7 +1560,7 @@ then say Yes and if not then say No.)" << endl;
 
                 //////////////////// Guest Lights Option Select //////////////////////////
                 int guestLightsOptionSelect;
-                guestLightsOptionSelectAgain:
+            guestLightsOptionSelectAgain:
                 while (!(cin >> guestLightsOptionSelect))
                 {
                     wrongBeep();
@@ -1528,6 +1574,8 @@ then say Yes and if not then say No.)" << endl;
                 {
                 /////////////////////// Turn on the lights ////////////////////////
                 case 1:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchGuestRoomLight == 1)
                     {
                         noBeep();
@@ -1544,6 +1592,8 @@ then say Yes and if not then say No.)" << endl;
 
                 //////////////////////// Turn off the lights ///////////////////////
                 case 2:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchGuestRoomLight == 0)
                     {
                         noBeep();
@@ -1561,6 +1611,8 @@ then say Yes and if not then say No.)" << endl;
 
                 //////////////////////// Light Intensity ////////////////////////////
                 case 3:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchGuestRoomLight == 0)
                     {
                         noBeep();
@@ -1573,7 +1625,7 @@ then say Yes and if not then say No.)" << endl;
                         cout << "Light Intensity is at " << guestLightIntensity << endl;
                         cout << endl;
                         cout << "Enter new Intensity (from 1 to 7)" << endl;
-                        guestLightIntensityAgain:
+                    guestLightIntensityAgain:
                         while (!(cin >> guestLightIntensity))
                         {
                             wrongBeep();
@@ -1597,6 +1649,8 @@ then say Yes and if not then say No.)" << endl;
 
                 ////////////////////////// Cancel /////////////////////////////////
                 case 4:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     noBeep();
                     goto guestOption;
 
@@ -1606,9 +1660,11 @@ then say Yes and if not then say No.)" << endl;
                     cout << "Invalid Option. Enter Again: ";
                     goto guestLightsOptionSelectAgain;
                 }
-            
+
             ///////////////////////////// Guest TV /////////////////////////////
             case 2:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 cout << endl;
                 cout << "   1) Turn on TV" << endl;
@@ -1620,8 +1676,8 @@ then say Yes and if not then say No.)" << endl;
 
                 ////////////////////////// Guest TV Option Select ////////////////////////
                 int guestTvOptionSelect;
-                guestTvOptionSelectAgain:
-                while(!(cin >> guestTvOptionSelect))
+            guestTvOptionSelectAgain:
+                while (!(cin >> guestTvOptionSelect))
                 {
                     wrongBeep();
                     cout << "Invalid Input. Enter Again: ";
@@ -1634,6 +1690,8 @@ then say Yes and if not then say No.)" << endl;
                 {
                 /////////////////////// Turn on tv ////////////////////////
                 case 1:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchGuestMusic == 1)
                     {
                         if (switchGuestTv == 1)
@@ -1676,6 +1734,8 @@ then say Yes and if not then say No.)" << endl;
 
                 /////////////////////// Turn off Tv ///////////////////////
                 case 2:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchGuestMusic == 1)
                     {
                         if (switchGuestTv == 0)
@@ -1720,6 +1780,8 @@ then say Yes and if not then say No.)" << endl;
 
                 //////////////////////// Change Channel to //////////////////
                 case 3:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchGuestTv == 0)
                     {
                         noBeep();
@@ -1731,8 +1793,14 @@ then say Yes and if not then say No.)" << endl;
                         optionSelectYesBeep();
                         cout << "Current channel is " << guestTvChannel << endl;
                         cout << "Which channel you want me to tune into? (1 to 100)" << endl;
-                        guestTvChannelAgain:
-                        cin >> guestTvChannel;
+                    guestTvChannelAgain:
+                        while(!(cin >> guestTvChannel))
+                        {
+                            wrongBeep();
+                            cout << "Invalid Input. Enter Again: ";
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        }
                         if (guestTvChannel >= 1 && guestTvChannel <= 100)
                         {
                             optionSelectYesBeep();
@@ -1745,10 +1813,11 @@ then say Yes and if not then say No.)" << endl;
                             cout << "Only 100 channels are available (i.e. 1 to 100). Enter Again: ";
                             goto guestTvChannelAgain;
                         }
-                        
                     }
                 //////////////////////// Change Volume ////////////////////
                 case 4:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchGuestTv == 0)
                     {
                         noBeep();
@@ -1760,8 +1829,14 @@ then say Yes and if not then say No.)" << endl;
                         optionSelectYesBeep();
                         cout << "Current volume is " << guestTvVolume << endl;
                         cout << "Enter new Volume: (Min Volume = 1, Max Volume is 100, To Mute Enter 0)" << endl;
-                        guestTvVolumeAgain:
-                        cin >> guestTvVolume;
+                    guestTvVolumeAgain:
+                        while(!(cin >> guestTvVolume))
+                        {
+                            wrongBeep();
+                            cout << "Invalid Input. Enter Again: ";
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        }
                         if (guestTvVolume >= 0 && guestTvVolume <= 100)
                         {
                             optionSelectYesBeep();
@@ -1778,6 +1853,8 @@ then say Yes and if not then say No.)" << endl;
 
                 //////////////////////// Cancel //////////////////////////
                 case 5:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     noBeep();
                     goto guestOption;
 
@@ -1790,6 +1867,8 @@ then say Yes and if not then say No.)" << endl;
 
             ///////////////////////////// Guest Music ///////////////////////////
             case 3:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 //////////////////////// Guest Music Options /////////////////////////
                 cout << "   1) Turn Music On" << endl;
@@ -1799,7 +1878,7 @@ then say Yes and if not then say No.)" << endl;
 
                 /////////////////////// Guest Music Input ////////////////////////////
                 int guestMusicOption;
-                guestMusicOptionAgain:
+            guestMusicOptionAgain:
                 while (!(cin >> guestMusicOption))
                 {
                     wrongBeep();
@@ -1813,6 +1892,8 @@ then say Yes and if not then say No.)" << endl;
                 {
                 //////////////////////// Turn Music on ////////////////////////
                 case 1:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchGuestTv == 1)
                     {
                         if (switchGuestMusic == 1)
@@ -1850,10 +1931,11 @@ then say Yes and if not then say No.)" << endl;
                             goto guestOption;
                         }
                     }
-                    
 
                 //////////////////////// Turn Music Off //////////////////////
                 case 2:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchGuestTv == 1)
                     {
                         if (switchGuestMusic == 0)
@@ -1896,13 +1978,15 @@ then say Yes and if not then say No.)" << endl;
 
                 //////////////////////// Music Volume //////////////////////
                 case 3:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     if (switchGuestMusic == 1)
                     {
                         optionSelectYesBeep();
                         cout << endl;
                         cout << "Volume of Music is currently at " << guestMusicVolume << endl;
                         cout << "Enter new Volume (from 1 to 100)" << endl;
-                        guestMusicVolumeAgain:
+                    guestMusicVolumeAgain:
                         while (!(cin >> guestMusicVolume))
                         {
                             wrongBeep();
@@ -1932,9 +2016,11 @@ then say Yes and if not then say No.)" << endl;
 
                 //////////////////////// Cancel ////////////////////////////
                 case 4:
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     noBeep();
                     goto guestOption;
-                
+
                 /////////////////////// Invalid Music select ///////////////////////
                 default:
                     wrongBeep();
@@ -1944,14 +2030,16 @@ then say Yes and if not then say No.)" << endl;
 
             //////////////////////////// Guest Curtains //////////////////////////
             case 4:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 cout << endl;
                 if (guestCurtain == 0)
                 {
                     cout << "Do you want me to open curtains?" << endl;
                     string guestCurtainAnswer;
-                    guestCurtainAnswerAgain:
-                    cin >> guestCurtainAnswer;
+                guestCurtainAnswerAgain:
+                    getline (cin, guestCurtainAnswer);
                     if (guestCurtainAnswer == "Yes" || guestCurtainAnswer == "YES" || guestCurtainAnswer == "yes" || guestCurtainAnswer == "Y" || guestCurtainAnswer == "y")
                     {
                         optionSelectYesBeep();
@@ -1977,8 +2065,8 @@ then say Yes and if not then say No.)" << endl;
                 {
                     cout << "Do you want me to close the curtains?" << endl;
                     string guestCurtainAnswer;
-                    guestCurtainOpenAnswerAgain:
-                    cin >> guestCurtainAnswer;
+                guestCurtainOpenAnswerAgain:
+                    getline (cin, guestCurtainAnswer);
                     if (guestCurtainAnswer == "Yes" || guestCurtainAnswer == "YES" || guestCurtainAnswer == "yes" || guestCurtainAnswer == "Y" || guestCurtainAnswer == "y")
                     {
                         optionSelectYesBeep();
@@ -2003,13 +2091,15 @@ then say Yes and if not then say No.)" << endl;
 
             //////////////////////////// Guest Room lock /////////////////////////
             case 5:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
-                if(guestRoomLock == 0)
+                if (guestRoomLock == 0)
                 {
                     cout << "Do You want me to Lock the room door?" << endl;
                     string guestLockAnswer;
-                    guestLockAnswerAgain:
-                    cin >> guestLockAnswer;
+                guestLockAnswerAgain:
+                    getline (cin, guestLockAnswer);
                     if (guestLockAnswer == "Yes" || guestLockAnswer == "YES" || guestLockAnswer == "yes" || guestLockAnswer == "Y" || guestLockAnswer == "y")
                     {
                         optionSelectYesBeep();
@@ -2034,8 +2124,8 @@ then say Yes and if not then say No.)" << endl;
                 {
                     cout << "Do You want me to unlock the room door?" << endl;
                     string guestLockAnswer;
-                    guestUnlockAnswerAgain:
-                    cin >> guestLockAnswer;
+                guestUnlockAnswerAgain:
+                    getline (cin, guestLockAnswer);
                     if (guestLockAnswer == "Yes" || guestLockAnswer == "YES" || guestLockAnswer == "yes" || guestLockAnswer == "Y" || guestLockAnswer == "y")
                     {
                         optionSelectYesBeep();
@@ -2056,15 +2146,15 @@ then say Yes and if not then say No.)" << endl;
                         goto guestUnlockAnswerAgain;
                     }
                 }
-                
-                
 
             //////////////////////////// Guest Return to corridor ////////////////////////
             case 6:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 cout << "Do you want me to turn off all the appliances?" << endl;
-                guestLeaveAnswerAgain:
-                cin >> guestLeaveAnswer;
+            guestLeaveAnswerAgain:
+                getline (cin, guestLeaveAnswer);
                 if (guestLeaveAnswer == "Yes" || guestLeaveAnswer == "YES" || guestLeaveAnswer == "yes" || guestLeaveAnswer == "Y" || guestLeaveAnswer == "y")
                 {
                     optionSelectYesBeep();
@@ -2092,7 +2182,7 @@ then say Yes and if not then say No.)" << endl;
                     cout << "I Dont Understand you. Enter Again: ";
                     goto guestLeaveAnswerAgain;
                 }
-            
+
             //////////////////////////// Guest Invalid Option ///////////////////////////
             default:
                 wrongBeep();
@@ -2108,15 +2198,16 @@ then say Yes and if not then say No.)" << endl;
                 cout << "The guest room is locked. Knock the Door and ask to open the door from the person in the guest room." << endl;
             }
             cout << "(The guest room door can be unlocked using master key only, in case of emergency. If you have master key and want to open the door\n\
-then say Yes and if not then say No.)" << endl;
+then say Yes and if not then say No.)"
+                 << endl;
             string guestIntruderAnswer;
-            guestIntruderAnswerAgain:
-            cin >> guestIntruderAnswer;
+        guestIntruderAnswerAgain:
+            getline (cin, guestIntruderAnswer);
             if (guestIntruderAnswer == "Yes" || guestIntruderAnswer == "YES" || guestIntruderAnswer == "yes" || guestIntruderAnswer == "Y" || guestIntruderAnswer == "y")
             {
                 optionSelectYesBeep();
                 cout << "Enter key: ";
-                cin >> guestIntruderInputKey;
+                getline (cin, guestIntruderInputKey);
                 if (guestIntruderInputKey == MasterKey)
                 {
                     correctBeep();
@@ -2148,6 +2239,8 @@ then say Yes and if not then say No.)" << endl;
     //========================================================================================//
     //=================================== Living Room ========================================//
     case 3:
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         optionSelectYesBeep();
         cout << endl;
         cout << "(The Door of living room opens)" << endl;
@@ -2160,9 +2253,9 @@ then say Yes and if not then say No.)" << endl;
         {
             cout << "(Light is already on)" << endl;
         }
-        
-        ////////////////////////////// Living Room Option /////////////////////
-        livingOption:
+
+    ////////////////////////////// Living Room Option /////////////////////
+    livingOption:
         cout << endl;
         cout << "(You are in the Living room)" << endl;
         livingCurtainCheck();
@@ -2186,7 +2279,7 @@ then say Yes and if not then say No.)" << endl;
 
         ///////////////////////////// Living Room option Select //////////////////////
         int livingOptionSelect;
-        livingOptionSelectAgain:
+    livingOptionSelectAgain:
         while (!(cin >> livingOptionSelect))
         {
             wrongBeep();
@@ -2200,6 +2293,8 @@ then say Yes and if not then say No.)" << endl;
         {
         //////////////////////////// Living Lights /////////////////////////////
         case 1:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             optionSelectYesBeep();
             cout << "   1) Turn on the lights" << endl;
             cout << "   2) Turn off the lights" << endl;
@@ -2208,7 +2303,7 @@ then say Yes and if not then say No.)" << endl;
 
             //////////////////// Living Lights Option Select //////////////////////////
             int livingLightsOptionSelect;
-            livingLightsOptionSelectAgain:
+        livingLightsOptionSelectAgain:
             while (!(cin >> livingLightsOptionSelect))
             {
                 wrongBeep();
@@ -2222,6 +2317,8 @@ then say Yes and if not then say No.)" << endl;
             {
             ///////////////////////// Turn on light ///////////////////////
             case 1:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 if (switchLivingRoomLight == 1)
                 {
                     noBeep();
@@ -2235,9 +2332,11 @@ then say Yes and if not then say No.)" << endl;
                     switchLivingRoomLight = 1;
                     goto livingOption;
                 }
-                
+
             ///////////////////////// Turn off the light //////////////////
             case 2:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 if (switchLivingRoomLight == 0)
                 {
                     noBeep();
@@ -2255,6 +2354,8 @@ then say Yes and if not then say No.)" << endl;
 
             ///////////////////////// Light Intensity /////////////////////
             case 3:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 if (switchLivingRoomLight == 0)
                 {
                     noBeep();
@@ -2268,7 +2369,7 @@ then say Yes and if not then say No.)" << endl;
                     cout << endl;
                     cout << "Enter new Intensity (from 1 to 7)" << endl;
                     int newLivingLightIntensity;
-                    newLivingLightIntensityAgain:
+                newLivingLightIntensityAgain:
                     while (!(cin >> newLivingLightIntensity))
                     {
                         wrongBeep();
@@ -2290,26 +2391,29 @@ then say Yes and if not then say No.)" << endl;
                         goto newLivingLightIntensityAgain;
                     }
                 }
-                
+
             ///////////////////////// Cancel ////////////////////////////
             case 4:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 noBeep();
                 cout << "Okay.." << endl;
                 goto livingOption;
 
-            ////////////////////////// Invalid Input //////////////////////            
+            ////////////////////////// Invalid Input //////////////////////
             default:
                 wrongBeep();
                 cout << "Invalid Input. Enter Again: " << endl;
                 goto livingLightsOptionSelectAgain;
             }
 
-
         //////////////////////////// Living Tv /////////////////////////////////
         case 2:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             optionSelectYesBeep();
-            ////////////////////////// Living TV Options ///////////////////
-            livingTvOption:
+        ////////////////////////// Living TV Options ///////////////////
+        livingTvOption:
             cout << endl;
             cout << "   1) Turn on TV" << endl;
             cout << "   2) Turn off TV" << endl;
@@ -2320,8 +2424,8 @@ then say Yes and if not then say No.)" << endl;
 
             ////////////////////////// Living TV Option Select ////////////////////////
             int livingTvOptionSelect;
-            livingTvOptionAgain:
-            while(!(cin >> livingTvOptionSelect))
+        livingTvOptionAgain:
+            while (!(cin >> livingTvOptionSelect))
             {
                 wrongBeep();
                 cout << "Invalid Input. Enter Again: ";
@@ -2334,6 +2438,8 @@ then say Yes and if not then say No.)" << endl;
             {
             /////////////////////////// Turn on Tv ///////////////////////
             case 1:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 if (switchLivingRoomTv == 1)
                 {
                     noBeep();
@@ -2348,11 +2454,11 @@ then say Yes and if not then say No.)" << endl;
                     cout << "(TV turns on and current channel is " << livingTvChannel << " and volume is " << livingTvVolume << ")" << endl;
                     goto livingOption;
                 }
-                
-                
 
             /////////////////////////// Turn off Tv //////////////////////
             case 2:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 if (switchLivingRoomTv == 0)
                 {
                     noBeep();
@@ -2370,6 +2476,8 @@ then say Yes and if not then say No.)" << endl;
 
             /////////////////////////// Change Channel to ////////////////
             case 3:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 if (switchLivingRoomTv == 0)
                 {
                     noBeep();
@@ -2381,8 +2489,14 @@ then say Yes and if not then say No.)" << endl;
                     optionSelectYesBeep();
                     cout << "Current channel is " << livingTvChannel << endl;
                     cout << "Which channel you want me to tune into? (1 to 100)" << endl;
-                    LivingTvChannelAgain:
-                    cin >> livingTvChannel;
+                LivingTvChannelAgain:
+                    while(!(cin >> livingTvChannel))
+                    {
+                        wrongBeep();
+                        cout << "Invalid Input. Enter Again: ";
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    }
                     if (livingTvChannel >= 1 && livingTvChannel <= 100)
                     {
                         optionSelectYesBeep();
@@ -2395,11 +2509,12 @@ then say Yes and if not then say No.)" << endl;
                         cout << "Only 100 channels are available (i.e. 1 to 100). Enter Again: ";
                         goto LivingTvChannelAgain;
                     }
-                    
                 }
-                
+
             /////////////////////////// Change Volume ////////////////////
             case 4:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 if (switchLivingRoomTv == 0)
                 {
                     noBeep();
@@ -2411,8 +2526,14 @@ then say Yes and if not then say No.)" << endl;
                     optionSelectYesBeep();
                     cout << "Current volume is " << livingTvVolume << endl;
                     cout << "Enter new Volume: (Min Volume = 1, Max Volume is 100, To Mute Enter 0)" << endl;
-                    LivingTvVolumeAgain:
-                    cin >> livingTvVolume;
+                LivingTvVolumeAgain:
+                    while(!(cin >> livingTvVolume))
+                    {
+                        wrongBeep();
+                        cout << "Invalid Input. Enter Again: ";
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    }
                     if (livingTvVolume >= 0 && livingTvVolume <= 100)
                     {
                         optionSelectYesBeep();
@@ -2425,11 +2546,12 @@ then say Yes and if not then say No.)" << endl;
                         cout << "Invalid Volume. Enter Again: ";
                         goto LivingTvVolumeAgain;
                     }
-                    
                 }
 
             /////////////////////////// Cancel ////////////////////////////
             case 5:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 noBeep();
                 goto livingOption;
 
@@ -2442,119 +2564,129 @@ then say Yes and if not then say No.)" << endl;
 
         ///////////////////////////// Music //////////////////////////////////
         case 3:
-            optionSelectYesBeep();
-        //////////////////////// Music Options /////////////////////////
-        cout << "   1) Turn Music On" << endl;
-        cout << "   2) Turn Music Off" << endl;
-        cout << "   3) Music Volume" << endl;
-        cout << "   4) Cancel" << endl;
-        /////////////////////// Music Input ////////////////////////////
-        int musicOption;
-        livingmusicOptionAgain:
-        while (!(cin >> musicOption))
-        {
-            wrongBeep();
-            cout << "Invalid Input. Select again: ";
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        }
-        /////////////////////// Music Switch //////////////////////////
-        switch (musicOption)
-        {
-        /////////////////////// Music on //////////////////////////////
-        case 1:
-            if (switchmusic == 1)
+            optionSelectYesBeep();
+            //////////////////////// Music Options /////////////////////////
+            cout << "   1) Turn Music On" << endl;
+            cout << "   2) Turn Music Off" << endl;
+            cout << "   3) Music Volume" << endl;
+            cout << "   4) Cancel" << endl;
+            /////////////////////// Music Input ////////////////////////////
+            int musicOption;
+        livingmusicOptionAgain:
+            while (!(cin >> musicOption))
             {
-                noBeep();
-                cout << "Music is already playing" << endl;
-                goto livingOption;
+                wrongBeep();
+                cout << "Invalid Input. Select again: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
-            else
+            /////////////////////// Music Switch //////////////////////////
+            switch (musicOption)
             {
-                optionSelectYesBeep();
-                switchmusic = 1;
-                cout << "Music is turned on. And Music Volume is " << musicVolume << endl;
-                goto livingOption;
-            }
-            
-            
-
-        /////////////////////// Music off /////////////////////////////
-        case 2:
-            if (switchmusic == 0)
-            {
-                noBeep();
-                cout << "Music is already off" << endl;
-                goto livingOption;
-            }
-            else
-            {
-                optionSelectYesBeep();
-                switchmusic = 0;
-                musicVolume = 67;
-                cout << "Music is turned off" << endl;
-                goto livingOption;
-            }
-            
-        //////////////////////// Music Volume /////////////////////////
-        case 3:
-            if (switchmusic == 1)
-            {
-                optionSelectYesBeep();
-                cout << endl;
-                cout << "Volume of Music is currently at " << musicVolume << endl;
-                cout << "Enter new Volume (from 1 to 100)" << endl;
-                int newVolumeMusic;
-                livingnewVolumeMusicAgain:
-                while (!(cin >> newVolumeMusic))
+            /////////////////////// Music on //////////////////////////////
+            case 1:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                if (switchmusic == 1)
                 {
-                    wrongBeep();
-                    cout << "Invalid Input. Enter Again: ";
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
-                if (!(newVolumeMusic >= 1) || !(newVolumeMusic <= 100))
-                {
-                    wrongBeep();
-                    cout << "Wrong Volume Level. Volume can be any level between 1 to 100 only. Enter again: ";
-                    goto livingnewVolumeMusicAgain;
+                    noBeep();
+                    cout << "Music is already playing" << endl;
+                    goto livingOption;
                 }
                 else
                 {
                     optionSelectYesBeep();
-                    musicVolume = newVolumeMusic;
-                    cout << "Volume of music is set to " << newVolumeMusic << endl;
+                    switchmusic = 1;
+                    cout << "Music is turned on. And Music Volume is " << musicVolume << endl;
                     goto livingOption;
                 }
-            }
-            else
-            {
+
+            /////////////////////// Music off /////////////////////////////
+            case 2:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                if (switchmusic == 0)
+                {
+                    noBeep();
+                    cout << "Music is already off" << endl;
+                    goto livingOption;
+                }
+                else
+                {
+                    optionSelectYesBeep();
+                    switchmusic = 0;
+                    musicVolume = 67;
+                    cout << "Music is turned off" << endl;
+                    goto livingOption;
+                }
+
+            //////////////////////// Music Volume /////////////////////////
+            case 3:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                if (switchmusic == 1)
+                {
+                    optionSelectYesBeep();
+                    cout << endl;
+                    cout << "Volume of Music is currently at " << musicVolume << endl;
+                    cout << "Enter new Volume (from 1 to 100)" << endl;
+                    int newVolumeMusic;
+                livingnewVolumeMusicAgain:
+                    while (!(cin >> newVolumeMusic))
+                    {
+                        wrongBeep();
+                        cout << "Invalid Input. Enter Again: ";
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    }
+                    if (!(newVolumeMusic >= 1) || !(newVolumeMusic <= 100))
+                    {
+                        wrongBeep();
+                        cout << "Wrong Volume Level. Volume can be any level between 1 to 100 only. Enter again: ";
+                        goto livingnewVolumeMusicAgain;
+                    }
+                    else
+                    {
+                        optionSelectYesBeep();
+                        musicVolume = newVolumeMusic;
+                        cout << "Volume of music is set to " << newVolumeMusic << endl;
+                        goto livingOption;
+                    }
+                }
+                else
+                {
+                    noBeep();
+                    cout << "Music is currently off" << endl;
+                    goto livingOption;
+                }
+
+            ///////////////////////// Cancel //////////////////////////////
+            case 4:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 noBeep();
-                cout << "Music is currently off" << endl;
                 goto livingOption;
+
+            //////////////////////// Music Invalid select /////////////////////////
+            default:
+                wrongBeep();
+                cout << "Invalid Input. Select again: ";
+                goto livingmusicOptionAgain;
             }
-            
-        ///////////////////////// Cancel //////////////////////////////
-        case 4:
-            noBeep();
-            goto livingOption;
-        
-        //////////////////////// Music Invalid select /////////////////////////
-        default:
-            wrongBeep();
-            cout << "Invalid Input. Select again: ";
-            goto livingmusicOptionAgain;
-        }
 
         ///////////////////////////// Living Curtains //////////////////////////
         case 4:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             optionSelectYesBeep();
             cout << endl;
             if (livingRoomCurtains == 0)
             {
                 cout << "Do you want me to open curtains?" << endl;
-                livingCurtainAnswerAgain:
-                cin >> livingCurtainAnswer;
+            livingCurtainAnswerAgain:
+                getline (cin, livingCurtainAnswer);
                 if (livingCurtainAnswer == "Yes" || livingCurtainAnswer == "YES" || livingCurtainAnswer == "yes" || livingCurtainAnswer == "Y" || livingCurtainAnswer == "y")
                 {
                     optionSelectYesBeep();
@@ -2579,8 +2711,8 @@ then say Yes and if not then say No.)" << endl;
             else
             {
                 cout << "Do you want me to close the curtains?" << endl;
-                livingOpenCurtainAnswerAgain:
-                cin >> livingCurtainAnswer;
+            livingOpenCurtainAnswerAgain:
+                getline (cin, livingCurtainAnswer);
                 if (livingCurtainAnswer == "Yes" || livingCurtainAnswer == "YES" || livingCurtainAnswer == "yes" || livingCurtainAnswer == "Y" || livingCurtainAnswer == "y")
                 {
                     optionSelectYesBeep();
@@ -2605,16 +2737,18 @@ then say Yes and if not then say No.)" << endl;
 
         //////////////////////////// Return to corridor from Living /////////////////
         case 5:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             optionSelectYesBeep();
             cout << "Do you want me to turn off all the appliances?" << endl;
-            livingLeaveAnswerAgain:
-            cin >> livingLeaveAnswer;
+        livingLeaveAnswerAgain:
+            getline (cin, livingLeaveAnswer);
             if (livingLeaveAnswer == "Yes" || livingLeaveAnswer == "YES" || livingLeaveAnswer == "yes" || livingLeaveAnswer == "Y" || livingLeaveAnswer == "y")
             {
                 optionSelectYesBeep();
                 cout << endl;
                 cout << "(All appliances of living room are turned off)" << endl;
-                if(livingRoomCurtains == 1)
+                if (livingRoomCurtains == 1)
                 {
                     livingRoomCurtains = 0;
                     cout << "(Curtains are closed)" << endl;
@@ -2637,9 +2771,8 @@ then say Yes and if not then say No.)" << endl;
                 cout << "I dont Understand you.. Please answer again: ";
                 goto livingLeaveAnswerAgain;
             }
-            
-            
-        //////////////////////////// Living Invalid Input //////////////////////////        
+
+        //////////////////////////// Living Invalid Input //////////////////////////
         default:
             wrongBeep();
             cout << "Invalid Input. Select Again: ";
@@ -2649,9 +2782,11 @@ then say Yes and if not then say No.)" << endl;
     //========================================================================================//
     //====================================== Kitchen =========================================//
     case 4:
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         optionSelectYesBeep();
-        ////////////////////////// Kitchen Options ////////////////////////
-        kitchenOption:
+    ////////////////////////// Kitchen Options ////////////////////////
+    kitchenOption:
         cout << endl;
         cout << "(You are in the kitchen)" << endl;
         musicCheck();
@@ -2669,7 +2804,7 @@ then say Yes and if not then say No.)" << endl;
 
         ///////////////////////// Kitchen option Select ////////////////////
         int kitchenOptionSelect;
-        kitchenOptionSelectAgain:
+    kitchenOptionSelectAgain:
         while (!(cin >> kitchenOptionSelect))
         {
             wrongBeep();
@@ -2683,6 +2818,8 @@ then say Yes and if not then say No.)" << endl;
         {
         //////////////////////// Make Smoothie ////////////////////////////
         case 1:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (smoothieIngredients == 0)
             {
                 noBeep();
@@ -2704,10 +2841,11 @@ then say Yes and if not then say No.)" << endl;
                 smoothieIngredients = smoothieIngredients - 1;
                 goto kitchenOption;
             }
-            
 
         ///////////////////////// Make Coffee ///////////////////////////////
         case 2:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (coffeeIngredients == 0)
             {
                 noBeep();
@@ -2729,10 +2867,11 @@ then say Yes and if not then say No.)" << endl;
                 coffeeIngredients = coffeeIngredients - 1;
                 goto kitchenOption;
             }
-            
 
         /////////////////////////// Make Protein Shake //////////////////////////
         case 3:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (proteinIngredients == 0)
             {
                 noBeep();
@@ -2757,16 +2896,18 @@ then say Yes and if not then say No.)" << endl;
 
         /////////////////////////// Search Recipie on Internet ////////////////////////
         case 4:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             optionSelectYesBeep();
-            cout << "Which Recipie you want to search? (spaces in the name must be replaced with underscore)" << endl;
-            cin >> recipieAnswer;
+            cout << "Which Recipie you want to search?" << endl;
+            getline (cin, recipieAnswer);
             optionSelectYesBeep();
             cout << "Searching Recipie of " << recipieAnswer << " on the Internet";
             for (int i = 0; i < 3; i++)
-                {
-                    Beep(0, 1000);
-                    cout << ".";
-                }
+            {
+                Beep(0, 1000);
+                cout << ".";
+            }
             optionSelectYesBeep();
             cout << endl;
             cout << "Showing search results on the screen next to stove." << endl;
@@ -2774,9 +2915,11 @@ then say Yes and if not then say No.)" << endl;
 
         ///////////////////////////// Return back to corridor /////////////////////////
         case 5:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             optionSelectYesBeep();
             goto corridorOption;
-        
+
         ////////////////////////////// Kitchen Invalid ///////////////////////////////
         default:
             wrongBeep();
@@ -2787,6 +2930,8 @@ then say Yes and if not then say No.)" << endl;
     //========================================================================================//
     //================================= Corridor Lights ======================================//
     case 5:
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         //////////////////////// Lights option ////////////////////////
         optionSelectYesBeep();
         cout << "   1) Turn on the light (Corridor and Kitchen)" << endl;
@@ -2796,7 +2941,7 @@ then say Yes and if not then say No.)" << endl;
 
         //////////////////////// Lights option Select ////////////////////////
         int lightsOptionSelect;
-        lightsOptionSelectAgain:
+    lightsOptionSelectAgain:
         while (!(cin >> lightsOptionSelect))
         {
             wrongBeep();
@@ -2804,12 +2949,14 @@ then say Yes and if not then say No.)" << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
-        
+
         //////////////////////// Lights switch //////////////////////////////
         switch (lightsOptionSelect)
         {
         //////////////////////// turn on the light //////////////////////////
         case 1:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (switchcorridorlight == 1)
             {
                 noBeep();
@@ -2826,6 +2973,8 @@ then say Yes and if not then say No.)" << endl;
 
         //////////////////////// turn off the lights ////////////////////////
         case 2:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (switchcorridorlight == 0)
             {
                 noBeep();
@@ -2842,6 +2991,8 @@ then say Yes and if not then say No.)" << endl;
 
         //////////////////////// turn off all the lights /////////////////////////
         case 3:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (switchcorridorlight == 0)
             {
                 noBeep();
@@ -2858,12 +3009,14 @@ then say Yes and if not then say No.)" << endl;
                 cout << "All the lights are turned off." << endl;
                 goto corridorOption;
             }
-        
+
         //////////////////////////// Cancel ////////////////////////////////
         case 4:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             noBeep();
             goto corridorOption;
-        
+
         //////////////////////////// Invalid light input /////////////////////
         default:
             wrongBeep();
@@ -2874,6 +3027,8 @@ then say Yes and if not then say No.)" << endl;
     //========================================================================================//
     //=================================== Corridor Music =====================================//
     case 6:
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         optionSelectYesBeep();
         //////////////////////// Music Options /////////////////////////
         cout << "   1) Turn Music On" << endl;
@@ -2882,7 +3037,7 @@ then say Yes and if not then say No.)" << endl;
         cout << "   4) Cancel" << endl;
         /////////////////////// Music Input ////////////////////////////
         int musicOption;
-        musicOptionAgain:
+    musicOptionAgain:
         while (!(cin >> musicOption))
         {
             wrongBeep();
@@ -2895,6 +3050,8 @@ then say Yes and if not then say No.)" << endl;
         {
         /////////////////////// Music on //////////////////////////////
         case 1:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (switchmusic == 1)
             {
                 noBeep();
@@ -2908,11 +3065,11 @@ then say Yes and if not then say No.)" << endl;
                 cout << "Music is turned on. And Music Volume is " << musicVolume << endl;
                 goto corridorOption;
             }
-            
-            
 
         /////////////////////// Music off /////////////////////////////
         case 2:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (switchmusic == 0)
             {
                 noBeep();
@@ -2927,9 +3084,11 @@ then say Yes and if not then say No.)" << endl;
                 cout << "Music is turned off" << endl;
                 goto corridorOption;
             }
-            
+
         //////////////////////// Music Volume /////////////////////////
         case 3:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             if (switchmusic == 1)
             {
                 optionSelectYesBeep();
@@ -2937,7 +3096,7 @@ then say Yes and if not then say No.)" << endl;
                 cout << "Volume of Music is currently at " << musicVolume << endl;
                 cout << "Enter new Volume (from 1 to 100)" << endl;
                 int newVolumeMusic;
-                newVolumeMusicAgain:
+            newVolumeMusicAgain:
                 while (!(cin >> newVolumeMusic))
                 {
                     wrongBeep();
@@ -2965,12 +3124,14 @@ then say Yes and if not then say No.)" << endl;
                 cout << "Music is currently off" << endl;
                 goto corridorOption;
             }
-            
+
         ///////////////////////// Cancel //////////////////////////////
         case 4:
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             noBeep();
             goto corridorOption;
-        
+
         //////////////////////// Music Invalid select /////////////////////////
         default:
             wrongBeep();
@@ -2981,6 +3142,8 @@ then say Yes and if not then say No.)" << endl;
     //========================================================================================//
     //============================= Going out of the house ===================================//
     case 7:
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         optionSelectYesBeep();
         /////////////////////////// both in house ///////////////////////////
         if (Master == 1 && Guest == 1)
@@ -2991,7 +3154,7 @@ then say Yes and if not then say No.)" << endl;
             cout << "   3) Guest" << endl;
             cout << "   4) No one" << endl;
             int goOutAnswer;
-            goOutAnswerAgain:
+        goOutAnswerAgain:
             while (!(cin >> goOutAnswer))
             {
                 wrongBeep();
@@ -3003,14 +3166,16 @@ then say Yes and if not then say No.)" << endl;
             {
             //////////////////////////// Both going outside //////////////////////////
             case 1:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 Master = 0;
                 Guest = 0;
                 cout << "(The Door gets locked when both of you gets out of the house)" << endl;
-                bothAskGettingBackInAgain:
+            bothAskGettingBackInAgain:
                 cout << "Getting back in?" << endl;
-                bothGetBackInAgain:
-                cin >> getBackIn;
+            bothGetBackInAgain:
+                getline (cin, getBackIn);
                 if (getBackIn == "Yes" || getBackIn == "YES" || getBackIn == "yes" || getBackIn == "y" || getBackIn == "Y")
                 {
                     optionSelectYesBeep();
@@ -3020,7 +3185,7 @@ then say Yes and if not then say No.)" << endl;
                     cout << "   3) Guest" << endl;
                     cout << "   4) No one" << endl;
                     int bothOutAnswer;
-                    bothOutAnswerAgain:
+                bothOutAnswerAgain:
                     while (!(cin >> bothOutAnswer))
                     {
                         wrongBeep();
@@ -3032,15 +3197,19 @@ then say Yes and if not then say No.)" << endl;
                     {
                     //////////////// both getting in //////////////////////
                     case 1:
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         optionSelectYesBeep();
                         Master = 1;
                         Guest = 1;
                         cout << "(the door opens automatically without entring key)" << endl;
                         cout << "(the door gets locked when both of you gets back in the house)" << endl;
                         goto corridorOption;
-                    
+
                     //////////////// Master getting in ////////////////////
                     case 2:
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         optionSelectYesBeep();
                         Master = 1;
                         cout << "(the door opens automatically without entring key)" << endl;
@@ -3049,14 +3218,18 @@ then say Yes and if not then say No.)" << endl;
 
                     //////////////// Guest getting in /////////////////////
                     case 3:
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         optionSelectYesBeep();
                         Guest = 1;
                         cout << "(the door opens automatically without entring key)" << endl;
                         cout << "(the door gets locked when you get back in the house)" << endl;
                         goto corridorOption;
-                    
+
                     //////////////// No one getting in /////////////////////
                     case 4:
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         noBeep();
                         cout << "Okay.." << endl;
                         goto bothAskGettingBackInAgain;
@@ -3066,7 +3239,6 @@ then say Yes and if not then say No.)" << endl;
                         cout << "Invalid input. Enter Again: ";
                         goto bothOutAnswerAgain;
                     }
-                    
                 }
 
                 /////////////////////////// no Getting back in //////////////////////////////////
@@ -3083,16 +3255,18 @@ then say Yes and if not then say No.)" << endl;
                     cout << "I dont Understand you..! Answer Again: ";
                     goto bothGetBackInAgain;
                 }
-                
+
             //////////////////////////// Master going out ////////////////////////////////
             case 2:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 Master = 0;
                 cout << "(the Door gets locked when you get out of the house)" << endl;
-                bothmasterAskGettingBackInAgain:
-                cout << "Getting back in?" << endl; 
-                bothMasterGetBackInAgain:
-                cin >> getBackIn;
+            bothmasterAskGettingBackInAgain:
+                cout << "Getting back in?" << endl;
+            bothMasterGetBackInAgain:
+                getline (cin, getBackIn);
                 if (getBackIn == "Yes" || getBackIn == "YES" || getBackIn == "yes" || getBackIn == "y" || getBackIn == "Y")
                 {
                     optionSelectYesBeep();
@@ -3113,16 +3287,18 @@ then say Yes and if not then say No.)" << endl;
                     cout << "I dont Understand you Master..! Answer Again: ";
                     goto bothMasterGetBackInAgain;
                 }
-            
+
             //////////////////////////// Guest going out //////////////////////////////////
             case 3:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 Guest = 0;
                 cout << "(the Door gets locked when you get out of the house)" << endl;
-                guestAskGettingBackInAgain:
+            guestAskGettingBackInAgain:
                 cout << "getting back in?" << endl;
-                guestGetBackInAgain:
-                cin >> getBackIn;
+            guestGetBackInAgain:
+                getline (cin, getBackIn);
                 if (getBackIn == "Yes" || getBackIn == "YES" || getBackIn == "yes" || getBackIn == "y" || getBackIn == "Y")
                 {
                     optionSelectYesBeep();
@@ -3145,11 +3321,13 @@ then say Yes and if not then say No.)" << endl;
                 }
 
             case 4:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 ////////////////// no one /////////////////////
                 noBeep();
                 cout << "Okay..!" << endl;
                 goto corridorOption;
-            
+
             default:
                 wrongBeep();
                 cout << "Invalid option. Select Again: ";
@@ -3161,10 +3339,10 @@ then say Yes and if not then say No.)" << endl;
         {
             Master = 0;
             cout << "(The Door gets locked when you get out of the house)" << endl;
-            masterAskGettingBackInAgain:
-            cout << "Getting back in?" << endl; 
-            masterGetBackInAgain:
-            cin >> getBackIn;
+        masterAskGettingBackInAgain:
+            cout << "Getting back in?" << endl;
+        masterGetBackInAgain:
+            getline (cin, getBackIn);
             if (getBackIn == "Yes" || getBackIn == "YES" || getBackIn == "yes" || getBackIn == "y" || getBackIn == "Y")
             {
                 optionSelectYesBeep();
@@ -3191,10 +3369,10 @@ then say Yes and if not then say No.)" << endl;
         {
             Guest = 0;
             cout << "(The Door gets locked when you get out of the house)" << endl;
-            askGettingBackInAgain:
-            cout << "Getting back in?" << endl; 
-            getBackInAgain:
-            cin >> getBackIn;
+        askGettingBackInAgain:
+            cout << "Getting back in?" << endl;
+        getBackInAgain:
+            getline (cin, getBackIn);
             if (getBackIn == "Yes" || getBackIn == "YES" || getBackIn == "yes" || getBackIn == "y" || getBackIn == "Y")
             {
                 optionSelectYesBeep();
@@ -3220,6 +3398,8 @@ then say Yes and if not then say No.)" << endl;
     //========================================================================================//
     //=================================== Leaving House ======================================//
     case 8:
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         optionSelectYesBeep();
         ////////////////////////// Both in house /////////////////////////
         if (Master == 1 && Guest == 1)
@@ -3230,7 +3410,7 @@ then say Yes and if not then say No.)" << endl;
             cout << "   3) Guest" << endl;
             cout << "   4) No one" << endl;
             int leaveAnswer;
-            leaveAnswerAgain:
+        leaveAnswerAgain:
             while (!(cin >> leaveAnswer))
             {
                 wrongBeep();
@@ -3240,8 +3420,10 @@ then say Yes and if not then say No.)" << endl;
             }
             switch (leaveAnswer)
             {
-            /////////////////////////// Both leaving ///////////////////////////////                
+            /////////////////////////// Both leaving ///////////////////////////////
             case 1:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 LeavingHouse();
                 cout << "(All electrical appliances (lights, music player, etc) are turned off.)" << endl;
@@ -3252,6 +3434,8 @@ then say Yes and if not then say No.)" << endl;
 
             ////////////////////// Master leaving ///////////////////////////////
             case 2:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 Master = 0;
                 cout << "Goodbye Master.. See you soon." << endl;
@@ -3260,6 +3444,8 @@ then say Yes and if not then say No.)" << endl;
 
             //////////////////// Guest leaving //////////////////////
             case 3:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 optionSelectYesBeep();
                 Guest = 0;
                 cout << "Goodbye Sir.. Take care of yourself." << endl;
@@ -3268,10 +3454,12 @@ then say Yes and if not then say No.)" << endl;
 
             //////////////////// no one leaving ///////////////////////////
             case 4:
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 noBeep();
                 cout << "Okay..!" << endl;
                 goto corridorOption;
-            
+
             default:
                 wrongBeep();
                 cout << "Invalid option. Select Again: ";
@@ -3296,7 +3484,7 @@ then say Yes and if not then say No.)" << endl;
             cout << "Good Bye Sir.. Take care of yourself..!" << endl;
             cout << "(Main Door gets locked after you get out of the house)" << endl;
         }
-        
+
         exit(0);
 
     ////////////////////// Corridor Invalid Option ///////////////////////
@@ -3305,7 +3493,7 @@ then say Yes and if not then say No.)" << endl;
         cout << "Invalid Option. Select again: ";
         goto corridorOptionSelectAgain;
     }
-    
+
     getch();
     return 0;
 }

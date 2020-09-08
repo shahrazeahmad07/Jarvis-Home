@@ -33,10 +33,10 @@ string safeKeyInput;
 string safeCloseInput;
 string masterIntruderInputKey;
 
-bool Master = 1;
+bool Master = 0;
 bool Guest = 0;
 
-bool switchcorridorlight = 1;
+bool switchcorridorlight = 0;
 ///////// Corridor Music Switch /////////
 bool switchmusic = 0;
 int musicVolume = 67;
@@ -45,7 +45,7 @@ int proteinIngredients = 3;
 int coffeeIngredients = 3;
 int smoothieIngredients = 3;
 
-bool switchMasterRoomLight = 1;
+bool switchMasterRoomLight = 0;
 int masterLightIntensity = 7;
 bool switchMasterMusic = 0;
 int masterMusicVolume = 67;
@@ -53,7 +53,7 @@ bool switchMastertv = 0;
 int masterTvChannel = 15;
 int masterTvVolume = 67;
 bool masterCurtain = 0;
-bool masterRoomLock = 1;
+bool masterRoomLock = 0;
 bool safeRoomLock = 1;
 
 bool switchGuestRoomLight = 0;

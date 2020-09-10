@@ -362,9 +362,9 @@ main()
     cout <<  "\t\t\t\t\t\t------This premises is controlled by Jarvis------" << endl;
 
     ///////////// House Description //////////////
-    cout << "  (This house has a guest room, a Master (Haddaad) room, an open kitchen, a drawing room and a corridor.There is only one door through which you can enter or leave the\n\
-  house. Master room has some more security features which only Haddaad can access. Only Haddaad has a special security key (Master key) with which he can\n\
-  use special features. There is also a safe room in Master room which is accessed by Master key only. The temperature of  the house is fully maintained\n\
+    cout << "  (This house has a guest room, a Master (Haddaad) room, an open kitchen, a drawing room and a corridor.There is only one door through which you can enter or\n\
+  leave the house. Master room has some more security features which only Haddaad can access. Only Haddaad has a special security key (Master key) with which\n\
+  he can use special features. There is also a safe room in Master room which is accessed by Master key only. The temperature of  the house is fully maintained\n\
   by automatic temperature controller. The house has some more features related to different appliances of the house. The Jarvis(AI Assistant) take care of\n\
   different things of house automatically. The house is fitted with proximity sensors and detect that if a person is present in the room or not and if Jarvis\n\
   detects that no one is in a certain place and the appliances are on, She will turn them off automatically. Each room has attach bath which is not controlled\n\

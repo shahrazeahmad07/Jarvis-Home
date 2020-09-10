@@ -11,8 +11,9 @@ using namespace std;
 //////////////////////////////// Before Main ///////////////////////////////////
 
 ///////////// Global Variables ///////////
+string MainDoorKeyForMaster = "0727";
 string HaddaadKey = "74588";
-string mainDoorKey = "12345";
+string mainDoorKey = "1234";
 string safeRoomKey = "Zombies";
 string safekey = "Brains";
 string emergencyKey = "IamHaddaad";
@@ -379,7 +380,7 @@ main()
     int mainDoorKeyTries = 0;
 mainDoorKeyInputAgain:
     getline(cin, mainDoorKeyInput);
-    if (mainDoorKeyInput == HaddaadKey)
+    if (mainDoorKeyInput == MainDoorKeyForMaster)
     {
         correctBeep();
         Haddaad = 1;
@@ -469,7 +470,7 @@ Corridor:
                 if (musicAnswer == "Yes" || musicAnswer == "YES" || musicAnswer == "yes" || musicAnswer == "Y" || musicAnswer == "y")
                 {
                     optionSelectYesBeep();
-                    cout << "\tPlaying Music.." << endl;
+                    cout << "\tPlaying Piano.." << endl;
                     switchmusic = 1;
                     cout << "\t(music is playing now)" << endl
                          << endl;
@@ -535,7 +536,7 @@ corridorOptionSelectAgain:
             cout << "\t(The Door of Haddaad's room opens)" << endl;
             if (switchHaddaadRoomLight == 0)
             {
-                cout << "\t(The Lights of the Haddaad's room turns on)" << endl;
+                cout << "\t(The Lights of Haddaad's room turns on)" << endl;
                 switchHaddaadRoomLight = 1;
             }
             else
@@ -546,7 +547,7 @@ corridorOptionSelectAgain:
         ////////////////////////////// Haddaad Room Option /////////////////////
         HaddaadOption:
             cout << endl;
-            cout << "\t(You are in the Haddaad's room)" << endl;
+            cout << "\t(You are in Haddaad's room)" << endl;
             HaddaadCurtainCheck();
             HaddaadMusicCheck();
             HaddaadTvCheck();
@@ -1387,7 +1388,7 @@ corridorOptionSelectAgain:
                         guestCurtain = 0;
                         HaddaadCurtain = 0;
                         cout << "\t(All doors are locked and all curtains are also closed)" << endl;
-                        cout << "\t(Jarvis has called the Police and Police is comming)" << endl;
+                        cout << "\t(Jarvis has notified the Police and Police is comming)" << endl;
                         goto HaddaadOption;
                     }
                     else if (HaddaadBurglarSure == "No" || HaddaadBurglarSure == "NO" || HaddaadBurglarSure == "no" || HaddaadBurglarSure == "n" || HaddaadBurglarSure == "N")
@@ -1482,7 +1483,7 @@ corridorOptionSelectAgain:
         else
         {
             wrongBeep();
-            cout << "\tThe Haddaad's room is locked. Knock the Door and ask to open the door." << endl;
+            cout << "\tHaddaad's room is locked. Knock the Door and ask to open the door." << endl;
             goto corridorOption;
         }
 
@@ -3500,7 +3501,7 @@ corridorOptionSelectAgain:
             cout << "\tGood Bye.. Take care of yourself..!" << endl;
             cout << "\t(Main Door gets locked after you get out of the house)" << endl;
         }
-
+        getch();
         exit(0);
 
     //////////////////////////////// Haddaad in case of emergency //////////////////////////////
@@ -3510,7 +3511,7 @@ corridorOptionSelectAgain:
         if (HaddaadRoomLock == 0)
         {
             wrongBeep();
-            cout << "\tThe Haddaad's Room Door is already open." << endl;
+            cout << "\tHaddaad's Room Door is already open." << endl;
             cout << "\t(The door opens)" << endl;
             goto guestOption;
         }
@@ -3524,7 +3525,7 @@ corridorOptionSelectAgain:
             cout << "\t(Hidden Haddaad's Room Door Unlock Portal opens)"
                  << endl;
             cout << "\tYou need an Emergency Key to open Haddaad's Room Door. If you have emergency key \n\
-\tand want to enter the Haddaad's Room then say Yes. Otherwise say No." << endl;
+\tand want to enter Haddaad's Room then say Yes. Otherwise say No." << endl;
             string HaddaadIntruderAnswer;
         HaddaadIntruderAnswerAgain:
             getline (cin, HaddaadIntruderAnswer);
